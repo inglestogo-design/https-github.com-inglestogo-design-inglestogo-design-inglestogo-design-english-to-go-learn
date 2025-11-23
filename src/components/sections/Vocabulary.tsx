@@ -17,9 +17,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 // Home images
@@ -145,6 +144,18 @@ export const Vocabulary = () => {
   const [loadingAudio, setLoadingAudio] = useState<string | null>(null);
   const { toast } = useToast();
 
+  // Load voices when component mounts
+  useEffect(() => {
+    if ('speechSynthesis' in window) {
+      // Load voices
+      speechSynthesis.getVoices();
+      // Some browsers need this event to fully load voices
+      speechSynthesis.onvoiceschanged = () => {
+        speechSynthesis.getVoices();
+      };
+    }
+  }, []);
+
   const toggleSection = (id: string) => {
     setOpenSections(prev => 
       prev.includes(id) 
@@ -158,39 +169,59 @@ export const Vocabulary = () => {
     setLoadingAudio(audioKey);
     
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-vocabulary-audio`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-          },
-          body: JSON.stringify({ word, theme: themeId }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error('Failed to generate audio');
+      // Check if browser supports speech synthesis
+      if (!('speechSynthesis' in window)) {
+        throw new Error('Speech synthesis not supported');
       }
 
-      const audioBlob = await response.blob();
-      const audioUrl = URL.createObjectURL(audioBlob);
-      const audio = new Audio(audioUrl);
+      const utterance = new SpeechSynthesisUtterance(word);
       
-      audio.onended = () => {
-        URL.revokeObjectURL(audioUrl);
+      // Configure voice settings
+      utterance.lang = 'en-US';
+      utterance.rate = 0.8; // Slightly slower for learning
+      utterance.pitch = 1.0;
+      
+      // Try to use a native English voice
+      const voices = speechSynthesis.getVoices();
+      const englishVoice = voices.find(voice => 
+        voice.lang.startsWith('en') && voice.name.includes('US')
+      ) || voices.find(voice => voice.lang.startsWith('en'));
+      
+      if (englishVoice) {
+        utterance.voice = englishVoice;
+      }
+
+      // Alternate between male/female voices by theme (if available)
+      const maleThemes = ['home', 'food', 'body', 'nature', 'animals'];
+      if (maleThemes.includes(themeId)) {
+        const maleVoice = voices.find(v => 
+          v.lang.startsWith('en') && (v.name.includes('Male') || v.name.includes('David') || v.name.includes('Alex'))
+        );
+        if (maleVoice) utterance.voice = maleVoice;
+      } else {
+        const femaleVoice = voices.find(v => 
+          v.lang.startsWith('en') && (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Victoria'))
+        );
+        if (femaleVoice) utterance.voice = femaleVoice;
+      }
+
+      utterance.onend = () => {
+        setLoadingAudio(null);
       };
-      
-      await audio.play();
+
+      utterance.onerror = (error) => {
+        console.error('Speech synthesis error:', error);
+        setLoadingAudio(null);
+      };
+
+      speechSynthesis.speak(utterance);
     } catch (error) {
       console.error('Error playing audio:', error);
       toast({
         title: "Erro ao reproduzir áudio",
-        description: "Não foi possível gerar o áudio. Tente novamente.",
+        description: "Seu navegador não suporta síntese de voz.",
         variant: "destructive",
       });
-    } finally {
       setLoadingAudio(null);
     }
   };
