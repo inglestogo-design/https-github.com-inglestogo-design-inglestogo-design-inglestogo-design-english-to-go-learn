@@ -1,1 +1,4 @@
 project_id = "mqixrtmnkogdpsaqosfm"
+
+[functions.generate-vocabulary-audio]
+verify_jwt = false
