@@ -7,9 +7,19 @@ import { Badge } from "@/components/ui/badge";
 export const Pronunciation = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [feedback, setFeedback] = useState<"correct" | "incorrect" | null>(null);
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
 
-  const currentPhrase = "Hello, how are you today?";
-  const phonetic = "relôu, ráu ar iu tudêi?";
+  const phrases = [
+    { english: "Hello, how are you today?", phonetic: "relôu, ráu ar iu tudêi?" },
+    { english: "Where are you from?", phonetic: "uér ar iu frôm?" },
+    { english: "I want to learn about English", phonetic: "ái uónt tu lârn ãbaut ínglish" },
+    { english: "What do you think about this?", phonetic: "uót du iu tínk ãbaut dís?" },
+    { english: "Can you help me with something?", phonetic: "kén iu rélp mi uid sâmthing?" },
+    { english: "I'm learning English every day", phonetic: "áim lârning ínglish évri dêi" },
+  ];
+
+  const currentPhrase = phrases[currentPhraseIndex].english;
+  const phonetic = phrases[currentPhraseIndex].phonetic;
 
   const handleRecord = () => {
     setIsRecording(!isRecording);
@@ -22,6 +32,15 @@ export const Pronunciation = () => {
     } else {
       setFeedback(null);
     }
+  };
+
+  const handleNextPhrase = () => {
+    setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+    setFeedback(null);
+  };
+
+  const handleTryAgain = () => {
+    setFeedback(null);
   };
 
   return (
@@ -101,11 +120,11 @@ export const Pronunciation = () => {
                   </div>
                 </div>
                 <div className="mt-4 flex gap-2">
-                  <Button variant="outline" size="sm" className="gap-2">
+                  <Button variant="outline" size="sm" className="gap-2" onClick={handleTryAgain}>
                     <RotateCw className="h-4 w-4" />
                     Tentar Novamente
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" onClick={handleNextPhrase}>
                     Próxima Frase
                   </Button>
                 </div>
