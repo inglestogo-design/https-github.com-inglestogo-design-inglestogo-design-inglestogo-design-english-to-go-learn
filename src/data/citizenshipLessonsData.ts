@@ -123,6 +123,438 @@ export const citizenshipLessons: CitizenshipLesson[] = [
     },
     summary: "Todos os cidadãos têm direitos fundamentais protegidos pela Constituição / All citizens have fundamental rights protected by the Constitution"
   },
+  {
+    id: 3,
+    level: 1,
+    title: "Deveres do Cidadão / Citizens' Duties",
+    titlePronunciation: "Sítizens Djútis",
+    objective: "Aprender as responsabilidades de um cidadão americano / Learn the responsibilities of an American citizen",
+    content: [
+      {
+        portuguese: "Pagar impostos",
+        english: "Pay taxes",
+        pronunciation: "Pêi téixiz"
+      },
+      {
+        portuguese: "Obedecer às leis",
+        english: "Obey the laws",
+        pronunciation: "Óbêi dhi lóz"
+      },
+      {
+        portuguese: "Servir em júri quando chamado",
+        english: "Serve on a jury when called",
+        pronunciation: "Sérv ón â djúri uén kóld"
+      },
+      {
+        portuguese: "Defender o país se necessário",
+        english: "Defend the country if needed",
+        pronunciation: "Difénd dhi kântri if níded"
+      }
+    ],
+    quiz: {
+      question: "Qual é um dever de todos os cidadãos? / What is one duty of all citizens?",
+      questionPronunciation: "Uát iz uân djúti óv ól sítizens?",
+      options: [
+        {
+          portuguese: "Votar nas eleições",
+          english: "Vote in elections",
+          pronunciation: "Vóut in ilékshons",
+          correct: false
+        },
+        {
+          portuguese: "Pagar impostos",
+          english: "Pay taxes",
+          pronunciation: "Pêi téixiz",
+          correct: true
+        },
+        {
+          portuguese: "Ir à igreja",
+          english: "Go to church",
+          pronunciation: "Gôu tu tchôrch",
+          correct: false
+        }
+      ]
+    },
+    summary: "Cidadãos têm deveres que mantêm o país funcionando / Citizens have duties that keep the country running"
+  },
+  {
+    id: 4,
+    level: 1,
+    title: "Sistema de Votação / Voting System",
+    titlePronunciation: "Vóuting Sístem",
+    objective: "Entender como funciona o processo eleitoral / Understand how the electoral process works",
+    content: [
+      {
+        portuguese: "Eleições presidenciais a cada 4 anos",
+        english: "Presidential elections every 4 years",
+        pronunciation: "Prézidénshâl ilékshons évri fór yírz"
+      },
+      {
+        portuguese: "Votação é um direito e responsabilidade",
+        english: "Voting is a right and responsibility",
+        pronunciation: "Vóuting iz â ráit ând rispónsibíliti"
+      },
+      {
+        portuguese: "Voto secreto e confidencial",
+        english: "Secret and confidential vote",
+        pronunciation: "Síkret ând kônfidénshâl vóut"
+      },
+      {
+        portuguese: "Idade mínima para votar: 18 anos",
+        english: "Minimum voting age: 18 years",
+        pronunciation: "Mínimum vóuting êidj: êitín yírz"
+      }
+    ],
+    quiz: {
+      question: "Com que idade você pode votar nos EUA? / At what age can you vote in the U.S.?",
+      questionPronunciation: "Ât uát êidj kén yu vóut in dhi Iú.És.?",
+      options: [
+        {
+          portuguese: "16 anos",
+          english: "16 years old",
+          pronunciation: "Síkstín yírz ôuld",
+          correct: false
+        },
+        {
+          portuguese: "18 anos",
+          english: "18 years old",
+          pronunciation: "Êitín yírz ôuld",
+          correct: true
+        },
+        {
+          portuguese: "21 anos",
+          english: "21 years old",
+          pronunciation: "Tuénti-uân yírz ôuld",
+          correct: false
+        }
+      ]
+    },
+    summary: "Votar é fundamental para a democracia americana / Voting is fundamental to American democracy"
+  },
+  {
+    id: 5,
+    level: 1,
+    title: "Primeira Emenda / First Amendment",
+    titlePronunciation: "Fôrst Âméndment",
+    objective: "Conhecer as cinco liberdades da Primeira Emenda / Know the five freedoms of the First Amendment",
+    content: [
+      {
+        portuguese: "Liberdade de religião",
+        english: "Freedom of religion",
+        pronunciation: "Frídum óv rilídjon"
+      },
+      {
+        portuguese: "Liberdade de expressão",
+        english: "Freedom of speech",
+        pronunciation: "Frídum óv spích"
+      },
+      {
+        portuguese: "Liberdade de imprensa",
+        english: "Freedom of the press",
+        pronunciation: "Frídum óv dhi prés"
+      },
+      {
+        portuguese: "Liberdade de reunião",
+        english: "Freedom of assembly",
+        pronunciation: "Frídum óv âsémbli"
+      },
+      {
+        portuguese: "Direito de petição ao governo",
+        english: "Right to petition the government",
+        pronunciation: "Ráit tu pêtíshon dhi gávérnment"
+      }
+    ],
+    quiz: {
+      question: "Qual é uma liberdade garantida pela Primeira Emenda? / What is one freedom guaranteed by the First Amendment?",
+      questionPronunciation: "Uát iz uân frídum gârântíd bai dhi Fôrst Âméndment?",
+      options: [
+        {
+          portuguese: "Direito de portar armas",
+          english: "Right to bear arms",
+          pronunciation: "Ráit tu bér ármz",
+          correct: false
+        },
+        {
+          portuguese: "Liberdade de expressão",
+          english: "Freedom of speech",
+          pronunciation: "Frídum óv spích",
+          correct: true
+        },
+        {
+          portuguese: "Direito a um advogado",
+          english: "Right to a lawyer",
+          pronunciation: "Ráit tu â lóier",
+          correct: false
+        }
+      ]
+    },
+    summary: "A Primeira Emenda protege liberdades fundamentais / The First Amendment protects fundamental freedoms"
+  },
+  {
+    id: 6,
+    level: 1,
+    title: "Governo Federal vs Estado / Federal vs State Government",
+    titlePronunciation: "Fédêrâl vérsus Stêit Gávérnment",
+    objective: "Diferenciar poderes federais e estaduais / Differentiate federal and state powers",
+    content: [
+      {
+        portuguese: "Governo Federal: moeda, defesa, relações exteriores",
+        english: "Federal Government: currency, defense, foreign relations",
+        pronunciation: "Fédêrâl Gávérnment: kârênsi, diféns, fórein rilêishons"
+      },
+      {
+        portuguese: "Governo Estadual: educação, polícia local, licenças",
+        english: "State Government: education, local police, licenses",
+        pronunciation: "Stêit Gávérnment: édjukêishon, lóukâl pôlís, láisênsiz"
+      },
+      {
+        portuguese: "Poderes compartilhados: impostos, leis",
+        english: "Shared powers: taxes, laws",
+        pronunciation: "Shérd páuêrs: téixiz, lóz"
+      }
+    ],
+    quiz: {
+      question: "Quem é responsável pela educação pública? / Who is responsible for public education?",
+      questionPronunciation: "Rú iz rispónsibôl fór pâblik édjukêishon?",
+      options: [
+        {
+          portuguese: "Governo Federal",
+          english: "Federal Government",
+          pronunciation: "Fédêrâl Gávérnment",
+          correct: false
+        },
+        {
+          portuguese: "Governo Estadual",
+          english: "State Government",
+          pronunciation: "Stêit Gávérnment",
+          correct: true
+        },
+        {
+          portuguese: "Governo Municipal",
+          english: "City Government",
+          pronunciation: "Síti Gávérnment",
+          correct: false
+        }
+      ]
+    },
+    summary: "Federal e estadual têm responsabilidades diferentes / Federal and state have different responsibilities"
+  },
+  {
+    id: 7,
+    level: 1,
+    title: "A Constituição / The Constitution",
+    titlePronunciation: "Dhi Kónstityúshon",
+    objective: "Entender o documento mais importante dos EUA / Understand the most important document of the U.S.",
+    content: [
+      {
+        portuguese: "Lei suprema do país",
+        english: "Supreme law of the land",
+        pronunciation: "Suprím ló óv dhi lénd"
+      },
+      {
+        portuguese: "Estabelece o governo e direitos",
+        english: "Establishes government and rights",
+        pronunciation: "Istéblishiz gávérnment ând ráits"
+      },
+      {
+        portuguese: "Escrita em 1787",
+        english: "Written in 1787",
+        pronunciation: "Ríten in séventin êiti-séven"
+      },
+      {
+        portuguese: "Pode ser emendada",
+        english: "Can be amended",
+        pronunciation: "Kén bí âménded"
+      }
+    ],
+    quiz: {
+      question: "O que é a Constituição? / What is the Constitution?",
+      questionPronunciation: "Uát iz dhi Kónstityúshon?",
+      options: [
+        {
+          portuguese: "Um livro de história",
+          english: "A history book",
+          pronunciation: "Â rístori búk",
+          correct: false
+        },
+        {
+          portuguese: "A lei suprema do país",
+          english: "The supreme law of the land",
+          pronunciation: "Dhi suprím ló óv dhi lénd",
+          correct: true
+        },
+        {
+          portuguese: "Uma declaração de guerra",
+          english: "A declaration of war",
+          pronunciation: "Â dêklarêishon óv uór",
+          correct: false
+        }
+      ]
+    },
+    summary: "A Constituição é a base do governo americano / The Constitution is the foundation of American government"
+  },
+  {
+    id: 8,
+    level: 1,
+    title: "O Presidente / The President",
+    titlePronunciation: "Dhi Prézident",
+    objective: "Aprender sobre o papel do Presidente / Learn about the President's role",
+    content: [
+      {
+        portuguese: "Líder do Poder Executivo",
+        english: "Leader of the Executive Branch",
+        pronunciation: "Líder óv dhi Igzékiutiv Brénch"
+      },
+      {
+        portuguese: "Comandante-chefe das Forças Armadas",
+        english: "Commander in Chief of the Armed Forces",
+        pronunciation: "Kômánder in Chíf óv dhi Ármd Fórsis"
+      },
+      {
+        portuguese: "Mandato de 4 anos",
+        english: "4-year term",
+        pronunciation: "Fór-yír térm"
+      },
+      {
+        portuguese: "Máximo de 2 mandatos",
+        english: "Maximum of 2 terms",
+        pronunciation: "Méksimum óv tú términz"
+      }
+    ],
+    quiz: {
+      question: "Por quantos anos o Presidente é eleito? / For how many years is the President elected?",
+      questionPronunciation: "Fór ráu méni yírz iz dhi Prézident iléktid?",
+      options: [
+        {
+          portuguese: "2 anos",
+          english: "2 years",
+          pronunciation: "Tú yírz",
+          correct: false
+        },
+        {
+          portuguese: "4 anos",
+          english: "4 years",
+          pronunciation: "Fór yírz",
+          correct: true
+        },
+        {
+          portuguese: "6 anos",
+          english: "6 years",
+          pronunciation: "Síks yírz",
+          correct: false
+        }
+      ]
+    },
+    summary: "O Presidente lidera o país e as Forças Armadas / The President leads the country and the Armed Forces"
+  },
+  {
+    id: 9,
+    level: 1,
+    title: "O Congresso / The Congress",
+    titlePronunciation: "Dhi Kóngres",
+    objective: "Conhecer as duas câmaras do Congresso / Know the two chambers of Congress",
+    content: [
+      {
+        portuguese: "Senado: 100 senadores (2 por estado)",
+        english: "Senate: 100 senators (2 per state)",
+        pronunciation: "Sénit: uân rândred sénêtorz (tú pér stêit)"
+      },
+      {
+        portuguese: "Câmara dos Representantes: 435 membros",
+        english: "House of Representatives: 435 members",
+        pronunciation: "Ráus óv Rêprizéntetivz: fór thôrti-fáiv mémbêrz"
+      },
+      {
+        portuguese: "Senadores: mandato de 6 anos",
+        english: "Senators: 6-year term",
+        pronunciation: "Sénêtorz: síks-yír térm"
+      },
+      {
+        portuguese: "Representantes: mandato de 2 anos",
+        english: "Representatives: 2-year term",
+        pronunciation: "Rêprizéntetivz: tú-yír térm"
+      }
+    ],
+    quiz: {
+      question: "Quantos senadores os EUA têm? / How many senators does the U.S. have?",
+      questionPronunciation: "Ráu méni sénêtorz dâz dhi Iú.És. ráv?",
+      options: [
+        {
+          portuguese: "50",
+          english: "50",
+          pronunciation: "Fífti",
+          correct: false
+        },
+        {
+          portuguese: "100",
+          english: "100",
+          pronunciation: "Uân rândred",
+          correct: true
+        },
+        {
+          portuguese: "435",
+          english: "435",
+          pronunciation: "Fór thôrti-fáiv",
+          correct: false
+        }
+      ]
+    },
+    summary: "O Congresso tem duas câmaras: Senado e Câmara / Congress has two chambers: Senate and House"
+  },
+  {
+    id: 10,
+    level: 1,
+    title: "Símbolos Americanos / American Symbols",
+    titlePronunciation: "Âmérikân Símbôlz",
+    objective: "Reconhecer símbolos nacionais importantes / Recognize important national symbols",
+    content: [
+      {
+        portuguese: "Bandeira: 50 estrelas (estados), 13 listras (colônias)",
+        english: "Flag: 50 stars (states), 13 stripes (colonies)",
+        pronunciation: "Flég: fífti stárz (stêits), thôrtín stráips (kólonis)"
+      },
+      {
+        portuguese: "Estátua da Liberdade: símbolo de liberdade",
+        english: "Statue of Liberty: symbol of freedom",
+        pronunciation: "Stétchu óv Líbêrti: símbôl óv frídum"
+      },
+      {
+        portuguese: "Águia americana: força e liberdade",
+        english: "Bald Eagle: strength and freedom",
+        pronunciation: "Bóld Ígôl: stréngth ând frídum"
+      },
+      {
+        portuguese: "Hino Nacional: The Star-Spangled Banner",
+        english: "National Anthem: The Star-Spangled Banner",
+        pronunciation: "Náshônâl Énthêm: Dhi Stár-Spéngôld Bénêr"
+      }
+    ],
+    quiz: {
+      question: "Quantas estrelas tem a bandeira americana? / How many stars are on the American flag?",
+      questionPronunciation: "Ráu méni stárz ár ón dhi Âmérikân flég?",
+      options: [
+        {
+          portuguese: "13",
+          english: "13",
+          pronunciation: "Thôrtín",
+          correct: false
+        },
+        {
+          portuguese: "50",
+          english: "50",
+          pronunciation: "Fífti",
+          correct: true
+        },
+        {
+          portuguese: "100",
+          english: "100",
+          pronunciation: "Uân rândred",
+          correct: false
+        }
+      ]
+    },
+    summary: "Símbolos nacionais representam valores americanos / National symbols represent American values"
+  },
   // Level 2 - Interview Procedures
   {
     id: 3,
