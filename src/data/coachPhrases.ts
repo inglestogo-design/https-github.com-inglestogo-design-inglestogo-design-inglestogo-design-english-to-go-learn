@@ -4,20 +4,23 @@ export interface CoachPhrase {
   english: string;
   pronunciation: string;
   category: string;
+  isFree?: boolean;
 }
 
 export const coachPhrases: CoachPhrase[] = [
-  // Informações Básicas
-  { id: 1, portuguese: "Qual é o seu nome?", english: "What's your name?", pronunciation: "uóts iôr nêim", category: "Básico" },
-  { id: 2, portuguese: "Meu nome é John.", english: "My name is John.", pronunciation: "mai nêim iz djón", category: "Básico" },
-  { id: 3, portuguese: "Como você está?", english: "How are you?", pronunciation: "ráu ar iú", category: "Básico" },
-  { id: 4, portuguese: "Estou bem, obrigado.", english: "I'm fine, thank you.", pronunciation: "aim fain, thénk iú", category: "Básico" },
-  { id: 5, portuguese: "De onde você é?", english: "Where are you from?", pronunciation: "uér ar iú fróm", category: "Básico" },
-  { id: 6, portuguese: "Eu sou do Brasil.", english: "I'm from Brazil.", pronunciation: "aim fróm brãzíu", category: "Básico" },
-  { id: 7, portuguese: "O que você faz?", english: "What do you do?", pronunciation: "uót du iú dú", category: "Básico" },
-  { id: 8, portuguese: "Eu sou professor(a).", english: "I'm a teacher.", pronunciation: "aim â títcher", category: "Básico" },
-  { id: 9, portuguese: "Você fala inglês?", english: "Do you speak English?", pronunciation: "du iú spík ínglish", category: "Básico" },
-  { id: 10, portuguese: "Sim, eu falo inglês.", english: "Yes, I speak English.", pronunciation: "iés, ai spík ínglish", category: "Básico" },
+  // Informações Básicas - GRATUITAS (10 primeiras)
+  { id: 1, portuguese: "Qual é o seu nome?", english: "What's your name?", pronunciation: "uóts iôr nêim", category: "Básico", isFree: true },
+  { id: 2, portuguese: "Meu nome é John.", english: "My name is John.", pronunciation: "mai nêim iz djón", category: "Básico", isFree: true },
+  { id: 3, portuguese: "Como você está?", english: "How are you?", pronunciation: "ráu ar iú", category: "Básico", isFree: true },
+  { id: 4, portuguese: "Estou bem, obrigado.", english: "I'm fine, thank you.", pronunciation: "aim fain, thénk iú", category: "Básico", isFree: true },
+  { id: 5, portuguese: "De onde você é?", english: "Where are you from?", pronunciation: "uér ar iú fróm", category: "Básico", isFree: true },
+  { id: 6, portuguese: "Eu sou do Brasil.", english: "I'm from Brazil.", pronunciation: "aim fróm brãzíu", category: "Básico", isFree: true },
+  { id: 7, portuguese: "O que você faz?", english: "What do you do?", pronunciation: "uót du iú dú", category: "Básico", isFree: true },
+  { id: 8, portuguese: "Eu sou professor(a).", english: "I'm a teacher.", pronunciation: "aim â títcher", category: "Básico", isFree: true },
+  { id: 9, portuguese: "Você fala inglês?", english: "Do you speak English?", pronunciation: "du iú spík ínglish", category: "Básico", isFree: true },
+  { id: 10, portuguese: "Sim, eu falo inglês.", english: "Yes, I speak English.", pronunciation: "iés, ai spík ínglish", category: "Básico", isFree: true },
+  
+  // PREMIUM - Restante das frases
   { id: 11, portuguese: "Quantos anos você tem?", english: "How old are you?", pronunciation: "ráu ôuld ar iú", category: "Básico" },
   { id: 12, portuguese: "Eu tenho 25 anos.", english: "I'm 25 years old.", pronunciation: "aim tuénti faiv iírz ôuld", category: "Básico" },
   { id: 13, portuguese: "Que horas são?", english: "What time is it?", pronunciation: "uót taim iz it", category: "Básico" },
@@ -354,9 +357,21 @@ export const coachPhrases: CoachPhrase[] = [
   { id: 294, portuguese: "Eu gosto de música pop.", english: "I like pop music.", pronunciation: "ai laik póp miúzik", category: "Música" },
 ];
 
-export const getRandomPhrase = (): CoachPhrase => {
-  const randomIndex = Math.floor(Math.random() * coachPhrases.length);
-  return coachPhrases[randomIndex];
+export const getRandomPhrase = (isPremium: boolean = false): CoachPhrase => {
+  const availablePhrases = isPremium 
+    ? coachPhrases 
+    : coachPhrases.filter(phrase => phrase.isFree);
+  
+  const randomIndex = Math.floor(Math.random() * availablePhrases.length);
+  return availablePhrases[randomIndex];
+};
+
+export const getFreePhrases = (): CoachPhrase[] => {
+  return coachPhrases.filter(phrase => phrase.isFree);
+};
+
+export const getPremiumPhrases = (): CoachPhrase[] => {
+  return coachPhrases.filter(phrase => !phrase.isFree);
 };
 
 export const getPhrasesByCategory = (category: string): CoachPhrase[] => {

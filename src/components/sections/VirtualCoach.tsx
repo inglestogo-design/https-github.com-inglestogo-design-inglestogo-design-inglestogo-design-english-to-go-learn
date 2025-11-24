@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { MessageCircle, Send, Volume2, RefreshCw, CheckCircle, XCircle, Bot } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import { getRandomPhrase, coachPhrases, type CoachPhrase } from "@/data/coachPhrases";
+import { getRandomPhrase, coachPhrases, getFreePhrases, getPremiumPhrases, type CoachPhrase } from "@/data/coachPhrases";
 import { speakText } from "@/utils/speechUtils";
 import { Badge } from "@/components/ui/badge";
 
@@ -33,7 +33,7 @@ export const VirtualCoach = () => {
   }, []);
 
   const loadNewPhrase = () => {
-    const phrase = getRandomPhrase();
+    const phrase = getRandomPhrase(isPremium);
     setCurrentPhrase(phrase);
     setUserAnswer("");
     setFeedback(null);
@@ -115,11 +115,16 @@ export const VirtualCoach = () => {
             🎯 <strong>How it works:</strong> Translate the phrase from Portuguese to English and get instant correction with pronunciation!
           </p>
           {!isPremium && (
-            <div className="flex items-center gap-2 text-sm">
-              <MessageCircle className="w-4 h-4 text-accent" />
-              <span className="font-semibold">
-                Tentativas grátis restantes / Free attempts left: {freeAttemptsLeft}/5
-              </span>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm">
+                <MessageCircle className="w-4 h-4 text-accent" />
+                <span className="font-semibold">
+                  Tentativas grátis restantes / Free attempts left: {freeAttemptsLeft}/5
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <span>📝 {getFreePhrases().length} frases grátis | 🔒 {getPremiumPhrases().length} frases premium</span>
+              </div>
             </div>
           )}
         </CardContent>
@@ -195,8 +200,14 @@ export const VirtualCoach = () => {
               <p className="text-muted-foreground">Tentativas / Attempts</p>
             </div>
             <div className="text-center p-3 bg-accent/10 rounded-lg">
-              <p className="text-2xl font-bold text-accent">{coachPhrases.length}</p>
-              <p className="text-muted-foreground">Frases disponíveis / Available phrases</p>
+              <p className="text-2xl font-bold text-accent">
+                {isPremium ? coachPhrases.length : getFreePhrases().length}
+              </p>
+              <p className="text-muted-foreground">
+                {isPremium 
+                  ? 'Frases disponíveis / Available phrases' 
+                  : 'Frases grátis / Free phrases'}
+              </p>
             </div>
           </div>
         </CardContent>
