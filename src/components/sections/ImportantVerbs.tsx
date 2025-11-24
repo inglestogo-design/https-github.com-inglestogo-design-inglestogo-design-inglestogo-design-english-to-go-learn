@@ -440,9 +440,19 @@ export const ImportantVerbs = () => {
               <CollapsibleContent>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {verbs.map((verb) => (
-                      <Card key={`past-${verb.infinitive}`} className="overflow-hidden hover:shadow-lg transition-smooth">
-                        <CardContent className="p-4">
+                    {verbs.map((verb, idx) => {
+                      const isLocked = !isPremium && idx >= 1;
+                      return (
+                      <Card key={`past-${verb.infinitive}`} className={`overflow-hidden hover:shadow-lg transition-smooth ${isLocked ? 'opacity-60' : ''}`}>
+                        <CardContent className="p-4 relative">
+                          {isLocked && (
+                            <div className="absolute inset-0 bg-background/80 backdrop-blur-sm rounded-lg flex items-center justify-center z-10">
+                              <div className="text-center">
+                                <Lock className="h-8 w-8 text-secondary mx-auto mb-2" />
+                                <p className="text-sm font-semibold text-foreground">Premium</p>
+                              </div>
+                            </div>
+                          )}
                           <div className="flex items-start gap-4">
                             <img 
                               src={verb.image} 
@@ -476,8 +486,14 @@ export const ImportantVerbs = () => {
                           </div>
                         </CardContent>
                       </Card>
-                    ))}
+                    );
+                    })}
                   </div>
+                  {!isPremium && (
+                    <LockedContent 
+                      message="🔒 Desbloqueie todos os 24 verbos no passado com Premium"
+                    />
+                  )}
                 </CardContent>
               </CollapsibleContent>
             </Card>
@@ -500,9 +516,19 @@ export const ImportantVerbs = () => {
               <CollapsibleContent>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {verbs.map((verb) => (
-                      <Card key={`future-${verb.infinitive}`} className="overflow-hidden hover:shadow-lg transition-smooth">
-                        <CardContent className="p-4">
+                    {verbs.map((verb, idx) => {
+                      const isLocked = !isPremium && idx >= 1;
+                      return (
+                      <Card key={`future-${verb.infinitive}`} className={`overflow-hidden hover:shadow-lg transition-smooth ${isLocked ? 'opacity-60' : ''}`}>
+                        <CardContent className="p-4 relative">
+                          {isLocked && (
+                            <div className="absolute inset-0 bg-background/80 backdrop-blur-sm rounded-lg flex items-center justify-center z-10">
+                              <div className="text-center">
+                                <Lock className="h-8 w-8 text-accent mx-auto mb-2" />
+                                <p className="text-sm font-semibold text-foreground">Premium</p>
+                              </div>
+                            </div>
+                          )}
                           <div className="flex items-start gap-4">
                             <img 
                               src={verb.image} 
@@ -536,8 +562,14 @@ export const ImportantVerbs = () => {
                           </div>
                         </CardContent>
                       </Card>
-                    ))}
+                    );
+                    })}
                   </div>
+                  {!isPremium && (
+                    <LockedContent 
+                      message="🔒 Desbloqueie todos os 24 verbos no futuro com Premium"
+                    />
+                  )}
                 </CardContent>
               </CollapsibleContent>
             </Card>
