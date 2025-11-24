@@ -41,6 +41,9 @@ const Index = () => {
           .single();
         
         setOnboardingStatus(data?.onboarding_completed || false);
+      } else {
+        // If no user, mark onboarding check as complete
+        setOnboardingStatus(null);
       }
       setCheckingOnboarding(false);
     };
