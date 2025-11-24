@@ -13,6 +13,7 @@ import { Numbers } from "@/components/sections/Numbers";
 import { Radio } from "@/components/sections/Radio";
 import { QuoteOfTheDay } from "@/components/sections/QuoteOfTheDay";
 import { LevelingTest } from "@/components/leveling-test/LevelingTest";
+import { VirtualCoach } from "@/components/sections/VirtualCoach";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -40,6 +41,8 @@ const Index = () => {
         return <ProgressSection />;
       case "radio":
         return <Radio />;
+      case "virtualCoach":
+        return <VirtualCoach />;
       default:
         return <Dashboard />;
     }
