@@ -128,6 +128,24 @@ import chefImg from "@/assets/vocabulary/jobs/chef.png";
 import artistImg from "@/assets/vocabulary/jobs/artist.png";
 import lawyerImg from "@/assets/vocabulary/jobs/lawyer.png";
 
+// Family images
+import motherImg from "@/assets/vocabulary/family/mother.png";
+import fatherImg from "@/assets/vocabulary/family/father.png";
+import sisterImg from "@/assets/vocabulary/family/sister.png";
+import brotherImg from "@/assets/vocabulary/family/brother.png";
+import grandmotherImg from "@/assets/vocabulary/family/grandmother.png";
+import grandfatherImg from "@/assets/vocabulary/family/grandfather.png";
+import babyImg from "@/assets/vocabulary/family/baby.png";
+
+// Emotions images
+import happyImg from "@/assets/vocabulary/emotions/happy.png";
+import sadImg from "@/assets/vocabulary/emotions/sad.png";
+import angryImg from "@/assets/vocabulary/emotions/angry.png";
+import scaredImg from "@/assets/vocabulary/emotions/scared.png";
+import surprisedImg from "@/assets/vocabulary/emotions/surprised.png";
+import excitedImg from "@/assets/vocabulary/emotions/excited.png";
+import loveImg from "@/assets/vocabulary/emotions/love.png";
+
 interface VocabularyWord {
   word: string;
   pronunciation: string;
@@ -213,6 +231,8 @@ export const Vocabulary = () => {
     clothes: [shirtImg, pantsImg, dressImg, shoesImg, socksImg, hatImg, jacketImg, skirtImg],
     animals: [dogImg, catImg, birdImg, fishImg, horseImg, cowImg, lionImg, elephantImg],
     jobs: [doctorImg, teacherJobImg, engineerImg, nurseImg, policeImg, chefImg, artistImg, lawyerImg],
+    family: [motherImg, fatherImg, sisterImg, brotherImg, grandmotherImg, grandfatherImg, babyImg],
+    emotions: [happyImg, sadImg, angryImg, scaredImg, surprisedImg, excitedImg, loveImg],
   };
 
   const themeConfig = {
