@@ -32,21 +32,52 @@ export const getMaleVoice = (): SpeechSynthesisVoice | null => {
 export const getFemaleVoice = (): SpeechSynthesisVoice | null => {
   const voices = getAvailableVoices();
   
-  // Priority list: Common American female voice names
+  // Priority list: Common American female voice names (expanded)
   const preferredNames = [
-    'samantha', 'victoria', 'karen', 'susan', 'alloy', 'nova',
-    'joanna', 'kendra', 'kimberly', 'salli', 'female'
+    // Google voices (most common on Chrome)
+    'google us english female', 'google us-english female',
+    // Apple voices (Safari/iOS)
+    'samantha', 'allison', 'ava', 'susan', 'vicki',
+    // Microsoft voices (Edge)
+    'zira', 'eva', 'hazel',
+    // Other common female voices
+    'victoria', 'karen', 'alloy', 'nova', 'joanna', 'kendra', 'kimberly', 'salli',
+    // Generic fallbacks
+    'female', 'woman'
   ];
   
-  // First try: Find by preferred names
+  // First try: Exact match with en-US locale
   for (const name of preferredNames) {
-    const voice = voices.find(v => v.name.toLowerCase().includes(name));
-    if (voice) return voice;
+    const voice = voices.find(v => 
+      v.name.toLowerCase().includes(name) && 
+      (v.lang === 'en-US' || v.lang === 'en_US')
+    );
+    if (voice) {
+      console.log('Selected voice:', voice.name, voice.lang);
+      return voice;
+    }
   }
   
-  // Fallback: Any female-sounding voice
-  const femaleVoice = voices.find(v => v.name.toLowerCase().includes('female'));
-  return femaleVoice || voices[1] || voices[0] || null;
+  // Second try: Any en-US female voice
+  const usVoice = voices.find(v => 
+    (v.lang === 'en-US' || v.lang === 'en_US') && 
+    preferredNames.some(name => v.name.toLowerCase().includes(name))
+  );
+  if (usVoice) {
+    console.log('Selected US voice:', usVoice.name, usVoice.lang);
+    return usVoice;
+  }
+  
+  // Third try: First available en-US voice (likely female)
+  const firstUSVoice = voices.find(v => v.lang === 'en-US' || v.lang === 'en_US');
+  if (firstUSVoice) {
+    console.log('Selected first US voice:', firstUSVoice.name, firstUSVoice.lang);
+    return firstUSVoice;
+  }
+  
+  // Last resort: Any English voice
+  console.log('Fallback to first available voice:', voices[0]?.name, voices[0]?.lang);
+  return voices[0] || null;
 };
 
 export const speakText = (
@@ -59,18 +90,15 @@ export const speakText = (
 
     const utterance = new SpeechSynthesisUtterance(text);
     
-    // Set voice based on gender or alternate
-    if (options.gender === 'male') {
+    // Default to female voice if no gender specified
+    const gender = options.gender ?? 'female';
+    
+    if (gender === 'male') {
       const voice = getMaleVoice();
       if (voice) utterance.voice = voice;
-    } else if (options.gender === 'female') {
+    } else {
       const voice = getFemaleVoice();
       if (voice) utterance.voice = voice;
-    } else {
-      // Alternate between male and female
-      const voice = voiceIndex % 2 === 0 ? getMaleVoice() : getFemaleVoice();
-      if (voice) utterance.voice = voice;
-      voiceIndex++;
     }
 
     // More natural speech parameters
@@ -107,6 +135,12 @@ export const speakWithAlternatingVoices = async (
 // Ensure voices are loaded
 if (typeof window !== 'undefined') {
   speechSynthesis.addEventListener('voiceschanged', () => {
-    console.log('Available voices:', getAvailableVoices().map(v => v.name));
+    const voices = getAvailableVoices();
+    console.log('=== VOZES DISPONÍVEIS ===');
+    console.log('Total de vozes inglesas:', voices.length);
+    voices.forEach((v, i) => {
+      console.log(`${i + 1}. ${v.name} (${v.lang}) - ${v.localService ? 'Local' : 'Network'}`);
+    });
+    console.log('Voz feminina selecionada:', getFemaleVoice()?.name);
   });
 }
