@@ -22,11 +22,36 @@ import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
-  const { user, loading, onboardingCompleted } = useAuth();
+  const { user, loading } = useAuth();
   const [activeSection, setActiveSection] = useState("dashboard");
   const [headerFont, setHeaderFont] = useState("font-fredoka");
   const [showStudyPlan, setShowStudyPlan] = useState(false);
   const [userAnswers, setUserAnswers] = useState<any>(null);
+  const [onboardingStatus, setOnboardingStatus] = useState<boolean | null>(null);
+  const [checkingOnboarding, setCheckingOnboarding] = useState(true);
+
+  // Check onboarding status once when user loads
+  useEffect(() => {
+    const checkOnboarding = async () => {
+      if (user) {
+        const { data } = await supabase
+          .from('profiles')
+          .select('onboarding_completed')
+          .eq('id', user.id)
+          .single();
+        
+        setOnboardingStatus(data?.onboarding_completed || false);
+      } else {
+        // If no user, mark onboarding check as complete
+        setOnboardingStatus(null);
+      }
+      setCheckingOnboarding(false);
+    };
+    
+    if (!loading) {
+      checkOnboarding();
+    }
+  }, [user, loading]);
 
   const handleQuizComplete = async () => {
     // Fetch user answers to show in study plan
@@ -39,6 +64,7 @@ const Index = () => {
       
       if (data) {
         setUserAnswers(data);
+        setOnboardingStatus(true); // Mark as completed locally
         setShowStudyPlan(true);
       }
     }
@@ -49,8 +75,8 @@ const Index = () => {
     setActiveSection("dashboard");
   };
 
-  // Show loading while checking auth status
-  if (loading) {
+  // Show loading while checking auth status and onboarding
+  if (loading || checkingOnboarding) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5 flex items-center justify-center">
         <div className="text-center">
@@ -62,7 +88,7 @@ const Index = () => {
   }
 
   // Show onboarding quiz if not completed
-  if (user && !onboardingCompleted && !showStudyPlan) {
+  if (user && onboardingStatus === false && !showStudyPlan) {
     return <OnboardingQuiz onComplete={handleQuizComplete} />;
   }
 
