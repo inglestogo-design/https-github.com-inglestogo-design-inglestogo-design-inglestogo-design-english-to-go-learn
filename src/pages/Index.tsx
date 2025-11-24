@@ -7,6 +7,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import { Dashboard } from "@/components/sections/Dashboard";
 import { Pronunciation } from "@/components/sections/Pronunciation";
+import { Dictionary } from "@/components/sections/Dictionary";
 import { Vocabulary } from "@/components/sections/Vocabulary";
 import { ImportantVerbs } from "@/components/sections/ImportantVerbs";
 import { Alphabet } from "@/components/sections/Alphabet";
@@ -125,6 +126,8 @@ const Index = () => {
         return <LevelingTest />;
       case "pronunciation":
         return <Pronunciation />;
+      case "dictionary":
+        return <Dictionary />;
       case "vocabulary":
         return <Vocabulary />;
       case "verbs":

@@ -1,4 +1,4 @@
-import { Home, Mic, BookText, BookA, GraduationCap, TrendingUp, BookOpen, Hash, Radio, Zap, Bot, Lightbulb, Flag, Settings } from "lucide-react";
+import { Home, Mic, BookText, BookA, GraduationCap, TrendingUp, BookOpen, Hash, Radio, Zap, Bot, Lightbulb, Flag, Settings, BookMarked } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import {
   Sidebar,
@@ -22,6 +22,7 @@ const navItems = [
   { id: "dashboard", label: "Início", icon: Home },
   { id: "leveling-test", label: "Teste de Nível", icon: Zap },
   { id: "pronunciation", label: "Pronúncia", icon: Mic },
+  { id: "dictionary", label: "Dicionário", icon: BookMarked },
   { id: "vocabulary", label: "Vocabulário", icon: BookText },
   { id: "verbs", label: "Verbos", icon: BookOpen },
   { id: "alphabet", label: "Alfabeto", icon: BookA },
