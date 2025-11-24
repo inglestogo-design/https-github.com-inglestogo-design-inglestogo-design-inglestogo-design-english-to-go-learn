@@ -12,6 +12,7 @@ import { ProgressSection } from "@/components/sections/Progress";
 import { Numbers } from "@/components/sections/Numbers";
 import { Radio } from "@/components/sections/Radio";
 import { QuoteOfTheDay } from "@/components/sections/QuoteOfTheDay";
+import { LevelingTest } from "@/components/leveling-test/LevelingTest";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -21,6 +22,8 @@ const Index = () => {
     switch (activeSection) {
       case "dashboard":
         return <Dashboard onNavigate={setActiveSection} />;
+      case "leveling-test":
+        return <LevelingTest />;
       case "pronunciation":
         return <Pronunciation />;
       case "vocabulary":
