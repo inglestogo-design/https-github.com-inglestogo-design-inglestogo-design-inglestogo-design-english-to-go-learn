@@ -1,4 +1,4 @@
-import { Home, Mic, BookText, BookA, GraduationCap, TrendingUp, BookOpen, Hash, Radio, Zap, Bot, Lightbulb } from "lucide-react";
+import { Home, Mic, BookText, BookA, GraduationCap, TrendingUp, BookOpen, Hash, Radio, Zap, Bot, Lightbulb, Flag } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface NavigationProps {
@@ -16,6 +16,7 @@ export const Navigation = ({ activeSection, onSectionChange }: NavigationProps) 
     { id: "alphabet", label: "Alfabeto / Alphabet", icon: BookA },
     { id: "numbers", label: "Números / Numbers", icon: Hash },
     { id: "lessons", label: "Lições / Lessons", icon: GraduationCap },
+    { id: "citizenship", label: "🇺🇸 Cidadania / Citizenship", icon: Flag },
     { id: "radio", label: "Rádio 24h / Radio 24/7", icon: Radio },
     { id: "progress", label: "Progresso / Progress", icon: TrendingUp },
     { id: "survivalEnglish", label: "📚 Survival English", icon: Lightbulb },
