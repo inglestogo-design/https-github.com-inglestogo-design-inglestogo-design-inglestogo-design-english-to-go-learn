@@ -10,7 +10,10 @@ interface SpeechOptions {
 let voiceIndex = 0; // Track which voice to use next
 
 export const getAvailableVoices = (): SpeechSynthesisVoice[] => {
-  return speechSynthesis.getVoices().filter(voice => voice.lang.startsWith('en'));
+  // Prioritize en-US voices, fallback to any English
+  const allVoices = speechSynthesis.getVoices();
+  const usVoices = allVoices.filter(voice => voice.lang === 'en-US' || voice.lang === 'en_US');
+  return usVoices.length > 0 ? usVoices : allVoices.filter(voice => voice.lang.startsWith('en'));
 };
 
 export const getMaleVoice = (): SpeechSynthesisVoice | null => {
@@ -28,15 +31,21 @@ export const getMaleVoice = (): SpeechSynthesisVoice | null => {
 
 export const getFemaleVoice = (): SpeechSynthesisVoice | null => {
   const voices = getAvailableVoices();
-  // Try to find female voices by name patterns
-  const femaleVoice = voices.find(v => 
-    v.name.toLowerCase().includes('female') ||
-    v.name.toLowerCase().includes('samantha') ||
-    v.name.toLowerCase().includes('victoria') ||
-    v.name.toLowerCase().includes('karen') ||
-    v.name.toLowerCase().includes('susan') ||
-    v.name.toLowerCase().includes('zira')
-  );
+  
+  // Priority list: Common American female voice names
+  const preferredNames = [
+    'samantha', 'victoria', 'karen', 'susan', 'alloy', 'nova',
+    'joanna', 'kendra', 'kimberly', 'salli', 'female'
+  ];
+  
+  // First try: Find by preferred names
+  for (const name of preferredNames) {
+    const voice = voices.find(v => v.name.toLowerCase().includes(name));
+    if (voice) return voice;
+  }
+  
+  // Fallback: Any female-sounding voice
+  const femaleVoice = voices.find(v => v.name.toLowerCase().includes('female'));
   return femaleVoice || voices[1] || voices[0] || null;
 };
 
@@ -66,8 +75,8 @@ export const speakText = (
 
     // More natural speech parameters
     utterance.rate = options.rate ?? 0.85; // Slightly slower for clarity
-    utterance.pitch = options.pitch ?? 1.0; // Normal pitch
-    utterance.volume = options.volume ?? 0.9; // Slightly lower volume
+    utterance.pitch = options.pitch ?? 0.95; // Slightly lower pitch for natural female voice
+    utterance.volume = options.volume ?? 1.0; // Full volume
     utterance.lang = 'en-US';
 
     utterance.onend = () => resolve();

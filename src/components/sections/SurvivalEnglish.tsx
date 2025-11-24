@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Volume2, Lock } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { speakText } from "@/utils/speechUtils";
 
 interface IdiomItem {
   emoji: string;
@@ -70,10 +71,7 @@ export const SurvivalEnglish = () => {
   const [activeTab, setActiveTab] = useState("idioms");
 
   const playAudio = (text: string) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-US";
-    utterance.rate = 0.8;
-    speechSynthesis.speak(utterance);
+    speakText(text, { gender: 'female', rate: 0.85 });
   };
 
   return (
