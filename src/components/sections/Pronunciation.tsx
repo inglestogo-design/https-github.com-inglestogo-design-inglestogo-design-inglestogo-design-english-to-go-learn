@@ -1,4 +1,6 @@
 import { Mic, Volume2, RotateCw, CheckCircle2, XCircle, Lock, Trophy } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { LockedContent } from "@/components/premium/LockedContent";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
@@ -18,6 +20,8 @@ export const Pronunciation = () => {
   const [accuracyScore, setAccuracyScore] = useState<number | null>(null);
   const { isRecording, transcript, startRecording, stopRecording, isSupported } = useSpeechRecognition();
   const { toast } = useToast();
+  const { isPremium } = useAuth();
+  const FREE_PHRASES_COUNT = 3;
   const { 
     saveProgress, 
     isLevelUnlocked, 
@@ -39,6 +43,17 @@ export const Pronunciation = () => {
 
   const handleLevelChange = (newLevel: string) => {
     const level = newLevel as 'basic' | 'intermediate' | 'advanced';
+    
+    // Block intermediate and advanced for non-premium users
+    if (!isPremium && level !== 'basic') {
+      toast({
+        title: "🔒 Conteúdo Premium / Premium Content",
+        description: "Assine para acessar níveis Intermediário e Avançado! / Subscribe to access Intermediate and Advanced!",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     if (!isLevelUnlocked(level)) {
       toast({
         title: "Nível Bloqueado / Level Locked",
@@ -143,7 +158,16 @@ export const Pronunciation = () => {
   };
 
   const handleNextPhrase = () => {
-    setCurrentPhraseIndex((prev) => (prev + 1) % filteredPhrases.length);
+    const nextIndex = currentPhraseIndex + 1;
+    if (!isPremium && selectedLevel === 'basic' && nextIndex >= FREE_PHRASES_COUNT) {
+      toast({
+        title: "🔒 Conteúdo Premium / Premium Content",
+        description: "Assine para praticar todas as frases! / Subscribe to practice all phrases!",
+        variant: "destructive",
+      });
+      return;
+    }
+    setCurrentPhraseIndex(nextIndex % filteredPhrases.length);
     setFeedback(null);
     setAccuracyScore(null);
   };
@@ -231,11 +255,17 @@ export const Pronunciation = () => {
         </TabsList>
 
         <TabsContent value={selectedLevel} className="mt-6">
+          {!isPremium && selectedLevel === 'basic' && currentPhraseIndex >= FREE_PHRASES_COUNT && (
+            <LockedContent 
+              message="🔒 Pratique todas as 30 frases do nível Básico e desbloqueie Intermediário e Avançado"
+            />
+          )}
+          {(isPremium || selectedLevel !== 'basic' || currentPhraseIndex < FREE_PHRASES_COUNT) && (
           <Card className="border-2 border-primary/20">
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span><strong>Frase</strong> {currentPhraseIndex + 1} / {filteredPhrases.length}</span>
+                  <span><strong>Frase</strong> {currentPhraseIndex + 1} / {!isPremium && selectedLevel === 'basic' ? FREE_PHRASES_COUNT : filteredPhrases.length}</span>
                   {isPhraseCompleted(selectedLevel, currentPhraseIndex) && (
                     <CheckCircle2 className="h-5 w-5 text-success" />
                   )}
@@ -333,6 +363,7 @@ export const Pronunciation = () => {
               )}
             </CardContent>
           </Card>
+          )}
         </TabsContent>
       </Tabs>
 

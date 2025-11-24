@@ -6,6 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Send, Bot, User, Sparkles, Lock } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface Message {
   role: "user" | "assistant";
@@ -16,16 +17,23 @@ export const VirtualCoach = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [freeMessagesLeft, setFreeMessagesLeft] = useState(10);
+  const [freeMessagesLeft, setFreeMessagesLeft] = useState(3);
   const [isPremium, setIsPremium] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+  const { isPremium: userIsPremium } = useAuth();
 
   useEffect(() => {
+    // Sync premium status
+    setIsPremium(userIsPremium);
+    
     // Load free messages count from localStorage
     const stored = localStorage.getItem("coachFreeMessages");
     if (stored) {
       setFreeMessagesLeft(parseInt(stored));
+    } else {
+      setFreeMessagesLeft(3); // Default to 3
+      localStorage.setItem("coachFreeMessages", "3");
     }
 
     // Add welcome message
@@ -42,13 +50,13 @@ Sou seu **Coach Virtual** de inglês! 🎯
 2. Eu corrijo automaticamente com cores e explicações 🎨
 3. Você aprende praticando! 💪
 
-**Você tem ${freeMessagesLeft} mensagens grátis** para testar! 🎁
+**Você tem 3 mensagens grátis** para testar! 🎁
 
 Pode começar! Try writing something in English... 🚀`,
         },
       ]);
     }
-  }, []);
+  }, [userIsPremium]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -167,7 +175,7 @@ Pode começar! Try writing something in English... 🚀`,
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-2xl font-bold text-primary">{freeMessagesLeft}</span>
-                <span className="text-muted-foreground">/ 10</span>
+                <span className="text-muted-foreground">/ 3</span>
               </div>
             </div>
             {freeMessagesLeft <= 3 && (
