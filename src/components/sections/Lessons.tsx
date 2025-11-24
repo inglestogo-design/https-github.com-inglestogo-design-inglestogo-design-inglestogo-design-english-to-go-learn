@@ -6,6 +6,8 @@ import { Trophy, Target } from "lucide-react";
 import { LessonCard } from "@/components/lessons/LessonCard";
 import { LessonContent } from "@/components/lessons/LessonContent";
 import { lessons } from "@/data/lessonsData";
+import { useAuth } from "@/contexts/AuthContext";
+import { LockedContent } from "@/components/premium/LockedContent";
 
 interface LessonProgress {
   completed: boolean;
@@ -16,6 +18,8 @@ interface LessonProgress {
 export const Lessons = () => {
   const [selectedLesson, setSelectedLesson] = useState<number | null>(null);
   const [progress, setProgress] = useState<Record<number, LessonProgress>>({});
+  const { isPremium } = useAuth();
+  const FREE_LESSONS_COUNT = 1;
 
   const handleLessonComplete = (lessonNumber: number, score: number, stars: number) => {
     setProgress(prev => ({
@@ -35,8 +39,10 @@ export const Lessons = () => {
   const totalStars = Object.values(progress).reduce((sum, p) => sum + (p.stars || 0), 0);
   const progressPercentage = (completedLessons / totalLessons) * 100;
 
-  // Check if lesson is locked (previous lesson not completed)
+  // Check if lesson is locked (previous lesson not completed OR premium required)
   const isLessonLocked = (lessonNumber: number) => {
+    // Non-premium users can only access first lesson
+    if (!isPremium && lessonNumber > FREE_LESSONS_COUNT) return true;
     if (lessonNumber === 1) return false;
     return !progress[lessonNumber - 1]?.completed;
   };
@@ -122,6 +128,13 @@ export const Lessons = () => {
           );
         })}
       </div>
+
+      {!isPremium && (
+        <LockedContent 
+          message="🔒 Desbloqueie todas as 30 lições dos Níveis 1, 2 e 3 com exercícios interativos"
+          size="lg"
+        />
+      )}
 
       {/* Coming Soon Badge */}
       <Card className="border-dashed border-2 border-muted-foreground/30">

@@ -1,14 +1,17 @@
 import { useState, useRef, useEffect } from "react";
-import { Radio as RadioIcon, Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { Radio as RadioIcon, Play, Pause, Volume2, VolumeX, Lock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
+import { useAuth } from "@/contexts/AuthContext";
+import { LockedContent } from "@/components/premium/LockedContent";
 
 export const Radio = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(70);
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const { isPremium } = useAuth();
 
   // English learning radio stations (24/7 streams)
   const radioStations = [
@@ -150,6 +153,12 @@ export const Radio = () => {
         </CardContent>
       </Card>
 
+      {!isPremium ? (
+        <LockedContent 
+          message="🔒 Desbloqueie o Rádio 24/7 e o Podcast Teacher Ao Vivo para praticar inglês todos os dias"
+          size="lg"
+        />
+      ) : (
       <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">
         <CardContent className="p-8">
           <div className="space-y-6">
@@ -293,6 +302,7 @@ export const Radio = () => {
           </div>
         </CardContent>
       </Card>
+      )}
 
       {/* Hidden Audio Element */}
       <audio
