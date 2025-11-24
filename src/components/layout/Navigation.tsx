@@ -1,4 +1,4 @@
-import { Home, Mic, BookText, BookA, GraduationCap, TrendingUp, BookOpen, Hash, Radio } from "lucide-react";
+import { Home, Mic, BookText, BookA, GraduationCap, TrendingUp, BookOpen, Hash, Radio, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface NavigationProps {
@@ -9,6 +9,7 @@ interface NavigationProps {
 export const Navigation = ({ activeSection, onSectionChange }: NavigationProps) => {
   const navItems = [
     { id: "dashboard", label: "Início / Home", icon: Home },
+    { id: "leveling-test", label: "⚡ Teste de Nível / Level Test", icon: Zap },
     { id: "pronunciation", label: "Pronúncia / Pronunciation", icon: Mic },
     { id: "vocabulary", label: "Vocabulário / Vocabulary", icon: BookText },
     { id: "verbs", label: "Verbos / Verbs", icon: BookOpen },
