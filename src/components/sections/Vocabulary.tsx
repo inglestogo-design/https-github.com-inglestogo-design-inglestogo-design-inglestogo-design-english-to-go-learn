@@ -37,6 +37,18 @@ import bedroomImg from "@/assets/vocabulary/home/bedroom.png";
 import bathroomImg from "@/assets/vocabulary/home/bathroom.png";
 import livingRoomImg from "@/assets/vocabulary/home/living-room.png";
 import gardenImg from "@/assets/vocabulary/home/garden.png";
+import garageImg from "@/assets/vocabulary/home/garage.png";
+import roofImg from "@/assets/vocabulary/home/roof.png";
+import floorImg from "@/assets/vocabulary/home/floor.png";
+import wallImg from "@/assets/vocabulary/home/wall.png";
+import ceilingImg from "@/assets/vocabulary/home/ceiling.png";
+import stairsImg from "@/assets/vocabulary/home/stairs.png";
+import balconyImg from "@/assets/vocabulary/home/balcony.png";
+import furnitureImg from "@/assets/vocabulary/home/furniture.png";
+import tableImg from "@/assets/vocabulary/home/table.png";
+import chairImg from "@/assets/vocabulary/home/chair.png";
+import bedImg from "@/assets/vocabulary/home/bed.png";
+import sofaImg from "@/assets/vocabulary/home/sofa.png";
 
 // School images
 import schoolImg from "@/assets/vocabulary/school/school.png";
@@ -47,6 +59,18 @@ import penImg from "@/assets/vocabulary/school/pen.png";
 import pencilImg from "@/assets/vocabulary/school/pencil.png";
 import notebookImg from "@/assets/vocabulary/school/notebook.png";
 import classroomImg from "@/assets/vocabulary/school/classroom.png";
+import blackboardImg from "@/assets/vocabulary/school/blackboard.png";
+import deskImg from "@/assets/vocabulary/school/desk.png";
+import eraserImg from "@/assets/vocabulary/school/eraser.png";
+import rulerImg from "@/assets/vocabulary/school/ruler.png";
+import backpackImg from "@/assets/vocabulary/school/backpack.png";
+import homeworkImg from "@/assets/vocabulary/school/homework.png";
+import testImg from "@/assets/vocabulary/school/test.png";
+import gradeImg from "@/assets/vocabulary/school/grade.png";
+import libraryImg from "@/assets/vocabulary/school/library.png";
+import cafeteriaImg from "@/assets/vocabulary/school/cafeteria.png";
+import principalImg from "@/assets/vocabulary/school/principal.png";
+import lessonImg from "@/assets/vocabulary/school/lesson.png";
 
 // Food images
 import foodImg from "@/assets/vocabulary/food/food.png";
@@ -57,6 +81,18 @@ import riceImg from "@/assets/vocabulary/food/rice.png";
 import chickenImg from "@/assets/vocabulary/food/chicken.png";
 import appleImg from "@/assets/vocabulary/food/apple.png";
 import bananaImg from "@/assets/vocabulary/food/banana.png";
+import orangeFoodImg from "@/assets/vocabulary/food/orange.png";
+import eggImg from "@/assets/vocabulary/food/egg.png";
+import cheeseImg from "@/assets/vocabulary/food/cheese.png";
+import meatImg from "@/assets/vocabulary/food/meat.png";
+import fishFoodImg from "@/assets/vocabulary/food/fish-food.png";
+import vegetableImg from "@/assets/vocabulary/food/vegetable.png";
+import fruitImg from "@/assets/vocabulary/food/fruit.png";
+import juiceImg from "@/assets/vocabulary/food/juice.png";
+import coffeeImg from "@/assets/vocabulary/food/coffee.png";
+import teaImg from "@/assets/vocabulary/food/tea.png";
+import sugarImg from "@/assets/vocabulary/food/sugar.png";
+import saltImg from "@/assets/vocabulary/food/salt.png";
 
 // Transportation images
 import carImg from "@/assets/vocabulary/transportation/car.png";
@@ -67,6 +103,18 @@ import bicycleImg from "@/assets/vocabulary/transportation/bicycle.png";
 import motorcycleImg from "@/assets/vocabulary/transportation/motorcycle.png";
 import boatImg from "@/assets/vocabulary/transportation/boat.png";
 import subwayImg from "@/assets/vocabulary/transportation/subway.png";
+import taxiImg from "@/assets/vocabulary/transportation/taxi.png";
+import truckImg from "@/assets/vocabulary/transportation/truck.png";
+import helicopterImg from "@/assets/vocabulary/transportation/helicopter.png";
+import shipImg from "@/assets/vocabulary/transportation/ship.png";
+import scooterImg from "@/assets/vocabulary/transportation/scooter.png";
+import vanImg from "@/assets/vocabulary/transportation/van.png";
+import ambulanceImg from "@/assets/vocabulary/transportation/ambulance.png";
+import fireTruckImg from "@/assets/vocabulary/transportation/fire-truck.png";
+import policeCarImg from "@/assets/vocabulary/transportation/police-car.png";
+import tramImg from "@/assets/vocabulary/transportation/tram.png";
+import ferryImg from "@/assets/vocabulary/transportation/ferry.png";
+import rocketImg from "@/assets/vocabulary/transportation/rocket.png";
 
 // Body images
 import headImg from "@/assets/vocabulary/body/head.png";
@@ -77,6 +125,18 @@ import earImg from "@/assets/vocabulary/body/ear.png";
 import handImg from "@/assets/vocabulary/body/hand.png";
 import footImg from "@/assets/vocabulary/body/foot.png";
 import armImg from "@/assets/vocabulary/body/arm.png";
+import legImg from "@/assets/vocabulary/body/leg.png";
+import fingerImg from "@/assets/vocabulary/body/finger.png";
+import toeImg from "@/assets/vocabulary/body/toe.png";
+import neckImg from "@/assets/vocabulary/body/neck.png";
+import shoulderImg from "@/assets/vocabulary/body/shoulder.png";
+import kneeImg from "@/assets/vocabulary/body/knee.png";
+import elbowImg from "@/assets/vocabulary/body/elbow.png";
+import chestImg from "@/assets/vocabulary/body/chest.png";
+import backImg from "@/assets/vocabulary/body/back.png";
+import stomachImg from "@/assets/vocabulary/body/stomach.png";
+import hairImg from "@/assets/vocabulary/body/hair.png";
+import skinImg from "@/assets/vocabulary/body/skin.png";
 
 // Colors images
 import redImg from "@/assets/vocabulary/colors/red.png";
@@ -87,6 +147,18 @@ import blackImg from "@/assets/vocabulary/colors/black.png";
 import whiteImg from "@/assets/vocabulary/colors/white.png";
 import orangeImg from "@/assets/vocabulary/colors/orange.png";
 import purpleImg from "@/assets/vocabulary/colors/purple.png";
+import pinkImg from "@/assets/vocabulary/colors/pink.png";
+import brownImg from "@/assets/vocabulary/colors/brown.png";
+import grayImg from "@/assets/vocabulary/colors/gray.png";
+import goldImg from "@/assets/vocabulary/colors/gold.png";
+import silverImg from "@/assets/vocabulary/colors/silver.png";
+import beigeImg from "@/assets/vocabulary/colors/beige.png";
+import turquoiseImg from "@/assets/vocabulary/colors/turquoise.png";
+import navyImg from "@/assets/vocabulary/colors/navy.png";
+import limeImg from "@/assets/vocabulary/colors/lime.png";
+import magentaImg from "@/assets/vocabulary/colors/magenta.png";
+import cyanImg from "@/assets/vocabulary/colors/cyan.png";
+import violetImg from "@/assets/vocabulary/colors/violet.png";
 
 // Nature images
 import treeImg from "@/assets/vocabulary/nature/tree.png";
@@ -97,6 +169,18 @@ import starImg from "@/assets/vocabulary/nature/star.png";
 import mountainImg from "@/assets/vocabulary/nature/mountain.png";
 import riverImg from "@/assets/vocabulary/nature/river.png";
 import oceanImg from "@/assets/vocabulary/nature/ocean.png";
+import skyImg from "@/assets/vocabulary/nature/sky.png";
+import cloudImg from "@/assets/vocabulary/nature/cloud.png";
+import rainImg from "@/assets/vocabulary/nature/rain.png";
+import windImg from "@/assets/vocabulary/nature/wind.png";
+import snowImg from "@/assets/vocabulary/nature/snow.png";
+import beachImg from "@/assets/vocabulary/nature/beach.png";
+import forestImg from "@/assets/vocabulary/nature/forest.png";
+import lakeImg from "@/assets/vocabulary/nature/lake.png";
+import grassImg from "@/assets/vocabulary/nature/grass.png";
+import stoneImg from "@/assets/vocabulary/nature/stone.png";
+import sandImg from "@/assets/vocabulary/nature/sand.png";
+import leafImg from "@/assets/vocabulary/nature/leaf.png";
 
 // Clothes images
 import shirtImg from "@/assets/vocabulary/clothes/shirt.png";
@@ -107,6 +191,18 @@ import socksImg from "@/assets/vocabulary/clothes/socks.png";
 import hatImg from "@/assets/vocabulary/clothes/hat.png";
 import jacketImg from "@/assets/vocabulary/clothes/jacket.png";
 import skirtImg from "@/assets/vocabulary/clothes/skirt.png";
+import sweaterImg from "@/assets/vocabulary/clothes/sweater.png";
+import coatImg from "@/assets/vocabulary/clothes/coat.png";
+import glovesImg from "@/assets/vocabulary/clothes/gloves.png";
+import scarfImg from "@/assets/vocabulary/clothes/scarf.png";
+import tieImg from "@/assets/vocabulary/clothes/tie.png";
+import beltImg from "@/assets/vocabulary/clothes/belt.png";
+import shortsImg from "@/assets/vocabulary/clothes/shorts.png";
+import jeansImg from "@/assets/vocabulary/clothes/jeans.png";
+import tshirtImg from "@/assets/vocabulary/clothes/t-shirt.png";
+import bootsImg from "@/assets/vocabulary/clothes/boots.png";
+import sandalsImg from "@/assets/vocabulary/clothes/sandals.png";
+import suitImg from "@/assets/vocabulary/clothes/suit.png";
 
 // Animals images
 import dogImg from "@/assets/vocabulary/animals/dog.png";
@@ -117,6 +213,18 @@ import horseImg from "@/assets/vocabulary/animals/horse.png";
 import cowImg from "@/assets/vocabulary/animals/cow.png";
 import lionImg from "@/assets/vocabulary/animals/lion.png";
 import elephantImg from "@/assets/vocabulary/animals/elephant.png";
+import tigerImg from "@/assets/vocabulary/animals/tiger.png";
+import bearImg from "@/assets/vocabulary/animals/bear.png";
+import monkeyImg from "@/assets/vocabulary/animals/monkey.png";
+import rabbitImg from "@/assets/vocabulary/animals/rabbit.png";
+import duckImg from "@/assets/vocabulary/animals/duck.png";
+import chickenAnimalImg from "@/assets/vocabulary/animals/chicken.png";
+import pigImg from "@/assets/vocabulary/animals/pig.png";
+import sheepImg from "@/assets/vocabulary/animals/sheep.png";
+import goatImg from "@/assets/vocabulary/animals/goat.png";
+import turtleImg from "@/assets/vocabulary/animals/turtle.png";
+import snakeImg from "@/assets/vocabulary/animals/snake.png";
+import frogImg from "@/assets/vocabulary/animals/frog.png";
 
 // Jobs images
 import doctorImg from "@/assets/vocabulary/jobs/doctor.png";
@@ -127,6 +235,18 @@ import policeImg from "@/assets/vocabulary/jobs/police.png";
 import chefImg from "@/assets/vocabulary/jobs/chef.png";
 import artistImg from "@/assets/vocabulary/jobs/artist.png";
 import lawyerImg from "@/assets/vocabulary/jobs/lawyer.png";
+import pilotImg from "@/assets/vocabulary/jobs/pilot.png";
+import firefighterImg from "@/assets/vocabulary/jobs/firefighter.png";
+import scientistImg from "@/assets/vocabulary/jobs/scientist.png";
+import dentistImg from "@/assets/vocabulary/jobs/dentist.png";
+import musicianImg from "@/assets/vocabulary/jobs/musician.png";
+import writerImg from "@/assets/vocabulary/jobs/writer.png";
+import driverImg from "@/assets/vocabulary/jobs/driver.png";
+import mechanicImg from "@/assets/vocabulary/jobs/mechanic.png";
+import actorImg from "@/assets/vocabulary/jobs/actor.png";
+import farmerImg from "@/assets/vocabulary/jobs/farmer.png";
+import waiterImg from "@/assets/vocabulary/jobs/waiter.png";
+import photographerImg from "@/assets/vocabulary/jobs/photographer.png";
 
 // Family images
 import motherImg from "@/assets/vocabulary/family/mother.png";
@@ -136,6 +256,19 @@ import brotherImg from "@/assets/vocabulary/family/brother.png";
 import grandmotherImg from "@/assets/vocabulary/family/grandmother.png";
 import grandfatherImg from "@/assets/vocabulary/family/grandfather.png";
 import babyImg from "@/assets/vocabulary/family/baby.png";
+import uncleImg from "@/assets/vocabulary/family/uncle.png";
+import auntImg from "@/assets/vocabulary/family/aunt.png";
+import cousinImg from "@/assets/vocabulary/family/cousin.png";
+import sonImg from "@/assets/vocabulary/family/son.png";
+import daughterImg from "@/assets/vocabulary/family/daughter.png";
+import nephewImg from "@/assets/vocabulary/family/nephew.png";
+import nieceImg from "@/assets/vocabulary/family/niece.png";
+import husbandImg from "@/assets/vocabulary/family/husband.png";
+import wifeImg from "@/assets/vocabulary/family/wife.png";
+import grandchildImg from "@/assets/vocabulary/family/grandchild.png";
+import twinImg from "@/assets/vocabulary/family/twin.png";
+import stepfatherImg from "@/assets/vocabulary/family/stepfather.png";
+import stepmotherImg from "@/assets/vocabulary/family/stepmother.png";
 
 // Emotions images
 import happyImg from "@/assets/vocabulary/emotions/happy.png";
@@ -145,6 +278,19 @@ import scaredImg from "@/assets/vocabulary/emotions/scared.png";
 import surprisedImg from "@/assets/vocabulary/emotions/surprised.png";
 import excitedImg from "@/assets/vocabulary/emotions/excited.png";
 import loveImg from "@/assets/vocabulary/emotions/love.png";
+import confusedImg from "@/assets/vocabulary/emotions/confused.png";
+import boredImg from "@/assets/vocabulary/emotions/bored.png";
+import tiredImg from "@/assets/vocabulary/emotions/tired.png";
+import calmImg from "@/assets/vocabulary/emotions/calm.png";
+import nervousImg from "@/assets/vocabulary/emotions/nervous.png";
+import proudImg from "@/assets/vocabulary/emotions/proud.png";
+import jealousImg from "@/assets/vocabulary/emotions/jealous.png";
+import embarrassedImg from "@/assets/vocabulary/emotions/embarrassed.png";
+import disappointedImg from "@/assets/vocabulary/emotions/disappointed.png";
+import gratefulImg from "@/assets/vocabulary/emotions/grateful.png";
+import lonelyImg from "@/assets/vocabulary/emotions/lonely.png";
+import curiousImg from "@/assets/vocabulary/emotions/curious.png";
+import confidentImg from "@/assets/vocabulary/emotions/confident.png";
 
 interface VocabularyWord {
   word: string;
@@ -219,20 +365,20 @@ export const Vocabulary = () => {
     }
   };
 
-  // Map existing images to first 8 words of each theme
+  // Map existing images to all 20 words of each theme
   const themeImages: Record<string, string[]> = {
-    home: [houseImg, doorImg, windowImg, kitchenImg, bedroomImg, bathroomImg, livingRoomImg, gardenImg],
-    school: [schoolImg, teacherImg, studentImg, bookImg, penImg, pencilImg, notebookImg, classroomImg],
-    food: [foodImg, waterImg, breadImg, milkImg, riceImg, chickenImg, appleImg, bananaImg],
-    transportation: [carImg, busImg, trainImg, airplaneImg, bicycleImg, motorcycleImg, boatImg, subwayImg],
-    body: [headImg, eyeImg, noseImg, mouthImg, earImg, handImg, footImg, armImg],
-    colors: [redImg, blueImg, greenImg, yellowImg, blackImg, whiteImg, orangeImg, purpleImg],
-    nature: [treeImg, flowerImg, sunImg, moonImg, starImg, mountainImg, riverImg, oceanImg],
-    clothes: [shirtImg, pantsImg, dressImg, shoesImg, socksImg, hatImg, jacketImg, skirtImg],
-    animals: [dogImg, catImg, birdImg, fishImg, horseImg, cowImg, lionImg, elephantImg],
-    jobs: [doctorImg, teacherJobImg, engineerImg, nurseImg, policeImg, chefImg, artistImg, lawyerImg],
-    family: [motherImg, fatherImg, sisterImg, brotherImg, grandmotherImg, grandfatherImg, babyImg],
-    emotions: [happyImg, sadImg, angryImg, scaredImg, surprisedImg, excitedImg, loveImg],
+    home: [houseImg, doorImg, windowImg, kitchenImg, bedroomImg, bathroomImg, livingRoomImg, gardenImg, garageImg, roofImg, floorImg, wallImg, ceilingImg, stairsImg, balconyImg, furnitureImg, tableImg, chairImg, bedImg, sofaImg],
+    school: [schoolImg, teacherImg, studentImg, bookImg, penImg, pencilImg, notebookImg, classroomImg, blackboardImg, deskImg, eraserImg, rulerImg, backpackImg, homeworkImg, testImg, gradeImg, libraryImg, cafeteriaImg, principalImg, lessonImg],
+    food: [foodImg, waterImg, breadImg, milkImg, riceImg, chickenImg, appleImg, bananaImg, orangeFoodImg, eggImg, cheeseImg, meatImg, fishFoodImg, vegetableImg, fruitImg, juiceImg, coffeeImg, teaImg, sugarImg, saltImg],
+    transportation: [carImg, busImg, trainImg, airplaneImg, bicycleImg, motorcycleImg, boatImg, subwayImg, taxiImg, truckImg, helicopterImg, shipImg, scooterImg, vanImg, ambulanceImg, fireTruckImg, policeCarImg, tramImg, ferryImg, rocketImg],
+    body: [headImg, eyeImg, noseImg, mouthImg, earImg, handImg, footImg, armImg, legImg, fingerImg, toeImg, neckImg, shoulderImg, kneeImg, elbowImg, chestImg, backImg, stomachImg, hairImg, skinImg],
+    colors: [redImg, blueImg, greenImg, yellowImg, blackImg, whiteImg, orangeImg, purpleImg, pinkImg, brownImg, grayImg, goldImg, silverImg, beigeImg, turquoiseImg, navyImg, limeImg, magentaImg, cyanImg, violetImg],
+    nature: [treeImg, flowerImg, sunImg, moonImg, starImg, mountainImg, riverImg, oceanImg, skyImg, cloudImg, rainImg, windImg, snowImg, beachImg, forestImg, lakeImg, grassImg, stoneImg, sandImg, leafImg],
+    clothes: [shirtImg, pantsImg, dressImg, shoesImg, socksImg, hatImg, jacketImg, skirtImg, sweaterImg, coatImg, glovesImg, scarfImg, tieImg, beltImg, shortsImg, jeansImg, tshirtImg, bootsImg, sandalsImg, suitImg],
+    animals: [dogImg, catImg, birdImg, fishImg, horseImg, cowImg, lionImg, elephantImg, tigerImg, bearImg, monkeyImg, rabbitImg, duckImg, chickenAnimalImg, pigImg, sheepImg, goatImg, turtleImg, snakeImg, frogImg],
+    jobs: [doctorImg, teacherJobImg, engineerImg, nurseImg, policeImg, chefImg, artistImg, lawyerImg, pilotImg, firefighterImg, scientistImg, dentistImg, musicianImg, writerImg, driverImg, mechanicImg, actorImg, farmerImg, waiterImg, photographerImg],
+    family: [motherImg, fatherImg, sisterImg, brotherImg, grandmotherImg, grandfatherImg, babyImg, uncleImg, auntImg, cousinImg, sonImg, daughterImg, nephewImg, nieceImg, husbandImg, wifeImg, grandchildImg, twinImg, stepfatherImg, stepmotherImg],
+    emotions: [happyImg, sadImg, angryImg, scaredImg, surprisedImg, excitedImg, loveImg, confusedImg, boredImg, tiredImg, calmImg, nervousImg, proudImg, jealousImg, embarrassedImg, disappointedImg, gratefulImg, lonelyImg, curiousImg, confidentImg],
   };
 
   const themeConfig = {
