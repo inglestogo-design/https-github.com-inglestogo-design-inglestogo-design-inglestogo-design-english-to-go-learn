@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/layout/Header";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/layout/AppSidebar";
 import { Dashboard } from "@/components/sections/Dashboard";
 import { Pronunciation } from "@/components/sections/Pronunciation";
 import { Vocabulary } from "@/components/sections/Vocabulary";
@@ -23,6 +26,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
   const { user, loading } = useAuth();
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("dashboard");
   const [headerFont, setHeaderFont] = useState("font-fredoka");
   const [showStudyPlan, setShowStudyPlan] = useState(false);
@@ -72,6 +76,13 @@ const Index = () => {
     setActiveSection("dashboard");
   };
 
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!loading && !user) {
+      navigate('/auth');
+    }
+  }, [loading, user, navigate]);
+
   // Show loading while checking auth status and onboarding
   if (loading || checkingOnboarding) {
     return (
@@ -82,6 +93,11 @@ const Index = () => {
         </div>
       </div>
     );
+  }
+
+  // Don't render if not authenticated
+  if (!user) {
+    return null;
   }
 
   // Show onboarding quiz if not completed
@@ -135,15 +151,20 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Header fontClass={headerFont} />
-      <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
-      <main className="container px-4 py-8 flex-1">
-        {renderSection()}
-      </main>
-      <Footer />
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full">
+        <AppSidebar activeSection={activeSection} onSectionChange={setActiveSection} />
+        <div className="flex-1 flex flex-col">
+          <Header fontClass={headerFont} />
+          <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
+          <main className="container px-4 py-8 flex-1">
+            {renderSection()}
+          </main>
+          <Footer />
+        </div>
+      </div>
       <QuoteOfTheDay />
-    </div>
+    </SidebarProvider>
   );
 };
 

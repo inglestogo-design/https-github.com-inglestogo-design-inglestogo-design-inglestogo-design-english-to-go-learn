@@ -258,60 +258,75 @@ export const QuoteOfTheDay = () => {
   return (
     <>
 
-      {/* Fixed Bottom Right Popup - Auto-hides after 10 seconds */}
+      {/* Fixed Bottom Right Popup - Large Clean Modern Design */}
       {showMiniPopup && !isOpen && (
         <div 
-          className="fixed bottom-6 right-6 z-50 animate-slide-up cursor-pointer"
+          className="fixed bottom-8 right-8 z-50 animate-slide-up cursor-pointer"
           onClick={() => {
             setIsOpen(true);
             setShowMiniPopup(false);
           }}
         >
-          <Card className="w-80 shadow-2xl border-2 border-emerald-400/40 bg-gradient-to-br from-sky-50 via-emerald-50 to-teal-50 dark:from-sky-950/40 dark:via-emerald-950/40 dark:to-teal-950/40 hover:scale-105 transition-all duration-300">
-            <CardContent className="p-4">
-              <div className="flex items-start gap-3 mb-3">
-                <div className="rounded-full bg-gradient-to-br from-amber-400 to-orange-500 p-2 animate-pulse shadow-lg">
-                  <Sun className="h-5 w-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-1">
-                    <h4 className="text-xs font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
-                      ☀️ Inspiração do Dia / Daily Inspiration
-                    </h4>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowMiniPopup(false);
-                      }}
-                      className="h-6 w-6 p-0 hover:bg-destructive/10"
-                    >
-                      <X className="h-3 w-3" />
-                    </Button>
-                  </div>
-                  <p className="text-[10px] text-emerald-700 dark:text-emerald-300">
-                    {new Date().toLocaleDateString('pt-BR', { 
-                      weekday: 'long', 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}
-                  </p>
-                </div>
+          <Card className="w-[420px] shadow-2xl border-0 bg-gradient-to-br from-amber-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-emerald-950 hover:scale-[1.02] transition-all duration-500 overflow-hidden">
+            <CardContent className="p-8 relative">
+              {/* Modern Sun Background */}
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full blur-3xl opacity-30 animate-pulse" />
+              <div className="absolute top-4 right-4 w-16 h-16">
+                <Sun className="w-full h-full text-amber-400 animate-spin-slow opacity-20" />
               </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-3xl">{todayQuote.emoji}</span>
-                  <p className="text-xs italic text-emerald-900 dark:text-emerald-100 flex-1 leading-relaxed">
-                    <span className="text-emerald-600 dark:text-emerald-400 font-black text-2xl leading-none">"</span>
-                    {todayQuote.english}
-                    <span className="text-emerald-600 dark:text-emerald-400 font-black text-2xl leading-none">"</span>
+
+              {/* Header */}
+              <div className="relative flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg animate-pulse">
+                    <Sun className="w-7 h-7 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-slate-900 dark:text-slate-100 tracking-tight">
+                      Daily Inspiration
+                    </h4>
+                    <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">
+                      {new Date().toLocaleDateString('en-US', { 
+                        month: 'short', 
+                        day: 'numeric',
+                        year: 'numeric'
+                      })}
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowMiniPopup(false);
+                  }}
+                  className="h-8 w-8 p-0 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
+                >
+                  <X className="h-4 w-4 text-slate-500" />
+                </Button>
+              </div>
+
+              {/* Quote Content */}
+              <div className="relative space-y-4">
+                <div className="flex items-start gap-4">
+                  <span className="text-5xl shrink-0 drop-shadow-lg">{todayQuote.emoji}</span>
+                  <div className="flex-1 space-y-3">
+                    <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 leading-relaxed">
+                      {todayQuote.english}
+                    </p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 italic">
+                      {todayQuote.portuguese}
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center justify-center">
+                  <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium flex items-center gap-2">
+                    <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                    Click to see pronunciation
                   </p>
                 </div>
-                <p className="text-[9px] text-center text-teal-600 dark:text-teal-400 font-medium">
-                  ✨ Clique para ver pronúncia e tradução
-                </p>
               </div>
             </CardContent>
           </Card>
@@ -319,46 +334,43 @@ export const QuoteOfTheDay = () => {
       )}
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-w-2xl border-emerald-400/40">
+        <DialogContent className="max-w-3xl border-0 bg-gradient-to-br from-amber-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-emerald-950">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-3 text-2xl">
-              <div className="rounded-full bg-gradient-to-br from-amber-400 to-orange-500 p-2.5 animate-pulse shadow-lg">
-                <Sun className="h-6 w-6 text-white" />
+            <DialogTitle className="flex items-center gap-4 text-3xl">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-xl animate-pulse">
+                <Sun className="w-8 h-8 text-white" />
               </div>
-              <span className="bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent font-bold">
-                Inspiração do Dia / Daily Inspiration
+              <span className="font-bold text-slate-900 dark:text-slate-100 tracking-tight">
+                Daily Inspiration
               </span>
             </DialogTitle>
           </DialogHeader>
           
-          <div className="space-y-6 py-4">
-            <div className="relative rounded-2xl bg-gradient-to-br from-sky-100 via-emerald-100 to-teal-100 dark:from-sky-950/60 dark:via-emerald-950/60 dark:to-teal-950/60 p-10 border-2 border-emerald-400/40 shadow-2xl overflow-hidden">
-              <div className="absolute top-3 left-3 text-7xl text-emerald-600/20 dark:text-emerald-400/20 font-serif leading-none">"</div>
-              <div className="absolute bottom-3 right-3 text-7xl text-emerald-600/20 dark:text-emerald-400/20 font-serif leading-none">"</div>
+          <div className="space-y-8 py-6">
+            {/* Main Quote Card - Clean Modern Design */}
+            <div className="relative rounded-3xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 p-12 shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+              {/* Decorative background elements */}
+              <div className="absolute -top-16 -right-16 w-48 h-48 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full blur-3xl opacity-20 animate-pulse" />
+              <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-full blur-3xl opacity-20 animate-pulse" />
               
-              {/* Decorative sun rays */}
-              <div className="absolute top-4 right-4 opacity-20">
-                <Sun className="h-20 w-20 text-amber-400 animate-spin-slow" />
-              </div>
-              
-              <div className="relative z-10 space-y-5">
+              <div className="relative z-10 space-y-8">
                 <div className="flex justify-center">
-                  <span className="text-7xl animate-pulse drop-shadow-lg">{todayQuote.emoji}</span>
+                  <span className="text-8xl drop-shadow-2xl animate-pulse">{todayQuote.emoji}</span>
                 </div>
-                <p className="text-2xl font-bold text-center text-emerald-900 dark:text-emerald-100 leading-relaxed px-4">
+                <p className="text-3xl font-bold text-center text-slate-900 dark:text-slate-100 leading-relaxed tracking-tight">
                   {todayQuote.english}
                 </p>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-200/30 dark:via-emerald-800/20 to-transparent animate-shimmer"></div>
             </div>
 
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-sky-50 to-emerald-50 dark:from-sky-950/40 dark:to-emerald-950/40 rounded-lg border border-emerald-300/30">
+            {/* Info Cards - Modern Clean Layout */}
+            <div className="grid gap-6">
+              <div className="flex items-center justify-between p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700">
                 <div className="flex-1">
-                  <p className="text-xs text-emerald-700 dark:text-emerald-300 mb-1 font-medium">
-                    🗣️ Pronúncia / Pronunciation:
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mb-2 font-medium uppercase tracking-wide">
+                    Pronunciation
                   </p>
-                  <p className="text-base font-medium text-teal-700 dark:text-teal-300">
+                  <p className="text-xl font-semibold text-slate-700 dark:text-slate-300">
                     /{todayQuote.pronunciation}/
                   </p>
                 </div>
@@ -367,25 +379,27 @@ export const QuoteOfTheDay = () => {
                   size="sm"
                   onClick={() => playAudio(todayQuote.english)}
                   disabled={loadingAudio}
-                  className="h-12 w-12 p-0 hover:bg-emerald-200 dark:hover:bg-emerald-800"
+                  className="h-14 w-14 rounded-full hover:bg-emerald-100 dark:hover:bg-emerald-900 transition-all"
                 >
-                  <Volume2 className={`h-6 w-6 text-emerald-600 dark:text-emerald-400 ${loadingAudio ? 'animate-pulse' : ''}`} />
+                  <Volume2 className={`h-7 w-7 text-emerald-600 dark:text-emerald-400 ${loadingAudio ? 'animate-pulse' : ''}`} />
                 </Button>
               </div>
 
-              <div className="p-4 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/40 rounded-lg border border-teal-300/30">
-                <p className="text-xs text-teal-700 dark:text-teal-300 mb-1 font-medium">
-                  💬 Significado / Meaning:
+              <div className="p-6 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/40 rounded-2xl shadow-lg border border-emerald-200 dark:border-emerald-800">
+                <p className="text-sm text-emerald-700 dark:text-emerald-300 mb-2 font-medium uppercase tracking-wide">
+                  Meaning
                 </p>
-                <p className="text-base font-medium text-emerald-800 dark:text-emerald-200">
+                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100">
                   {todayQuote.portuguese}
                 </p>
               </div>
             </div>
 
-            <div className="text-center text-sm bg-gradient-to-r from-transparent via-emerald-100 dark:via-emerald-950/40 to-transparent py-3 rounded-lg border border-emerald-300/20">
-              <span className="text-xl">🌅</span> 
-              <span className="text-emerald-700 dark:text-emerald-300 font-medium"> Uma nova inspiração aparecerá amanhã! / A new inspiration will appear tomorrow!</span>
+            <div className="text-center pt-4">
+              <p className="text-sm text-slate-600 dark:text-slate-400 flex items-center justify-center gap-2">
+                <span className="text-2xl">🌅</span> 
+                <span>A new inspiration will appear tomorrow</span>
+              </p>
             </div>
           </div>
         </DialogContent>
