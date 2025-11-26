@@ -20,6 +20,7 @@ import { QuoteOfTheDay } from "@/components/sections/QuoteOfTheDay";
 import { LevelingTest } from "@/components/leveling-test/LevelingTest";
 import { VirtualCoach } from "@/components/sections/VirtualCoach";
 import { SurvivalEnglish } from "@/components/sections/SurvivalEnglish";
+import { AuPairCourse } from "@/components/sections/AuPairCourse";
 import { OnboardingQuiz } from "@/components/onboarding/OnboardingQuiz";
 import { StudyPlan } from "@/components/onboarding/StudyPlan";
 import { useAuth } from "@/contexts/AuthContext";
@@ -149,6 +150,8 @@ const Index = () => {
         return <VirtualCoach />;
       case "survivalEnglish":
         return <SurvivalEnglish />;
+      case "auPairCourse":
+        return <AuPairCourse />;
       default:
         return <Dashboard />;
     }
