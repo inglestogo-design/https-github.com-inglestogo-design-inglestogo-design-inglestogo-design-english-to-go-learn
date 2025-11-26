@@ -131,8 +131,7 @@ export const AuPairCourse = () => {
             </Button>
           ) : (
             <LockedContent
-              title="Glossário Premium / Premium Glossary"
-              description="Desbloqueie mais de 50 termos essenciais do programa Au Pair / Unlock 50+ essential Au Pair program terms"
+              message="Glossário Premium: Desbloqueie mais de 50 termos essenciais do programa Au Pair / Premium Glossary: Unlock 50+ essential Au Pair program terms"
             />
           )}
         </CardContent>
@@ -174,8 +173,7 @@ export const AuPairCourse = () => {
                 </p>
                 {isLocked ? (
                   <LockedContent
-                    title="Aula Premium / Premium Lesson"
-                    description="Faça upgrade para acessar todas as aulas / Upgrade to access all lessons"
+                    message="Aula Premium: Faça upgrade para acessar todas as aulas / Premium Lesson: Upgrade to access all lessons"
                   />
                 ) : (
                   <Button
