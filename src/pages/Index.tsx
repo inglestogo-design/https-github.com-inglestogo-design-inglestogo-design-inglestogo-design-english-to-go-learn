@@ -42,13 +42,18 @@ const Index = () => {
   useEffect(() => {
     const checkOnboarding = async () => {
       if (user) {
-        const { data } = await supabase
-          .from('profiles')
-          .select('onboarding_completed')
-          .eq('id', user.id)
-          .single();
-        
-        setOnboardingStatus(data?.onboarding_completed || false);
+        try {
+          const { data } = await supabase
+            .from('profiles')
+            .select('onboarding_completed')
+            .eq('id', user.id)
+            .maybeSingle();
+          
+          setOnboardingStatus(data?.onboarding_completed || false);
+        } catch (error) {
+          console.error('Error checking onboarding:', error);
+          setOnboardingStatus(false);
+        }
       }
       setCheckingOnboarding(false);
     };
@@ -61,16 +66,20 @@ const Index = () => {
   const handleQuizComplete = async () => {
     // Fetch user answers to show in study plan
     if (user) {
-      const { data } = await supabase
-        .from('profiles')
-        .select('english_level, motivation, main_difficulties')
-        .eq('id', user.id)
-        .single();
-      
-      if (data) {
-        setUserAnswers(data);
-        setOnboardingStatus(true); // Mark as completed locally
-        setShowStudyPlan(true);
+      try {
+        const { data } = await supabase
+          .from('profiles')
+          .select('english_level, motivation, main_difficulties')
+          .eq('id', user.id)
+          .maybeSingle();
+        
+        if (data) {
+          setUserAnswers(data);
+          setOnboardingStatus(true); // Mark as completed locally
+          setShowStudyPlan(true);
+        }
+      } catch (error) {
+        console.error('Error fetching quiz answers:', error);
       }
     }
   };
