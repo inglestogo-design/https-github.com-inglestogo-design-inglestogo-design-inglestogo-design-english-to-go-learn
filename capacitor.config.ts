@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'app.lovable.92502ef92118477cbe2cb77e93aff393',
-  appName: 'Inglês to Go',
+  appName: 'Ingles to Go',
   webDir: 'dist',
   
   ios: {
@@ -19,7 +19,7 @@ const config: CapacitorConfig = {
     allowMixedContent: false,
     captureInput: true,
     webContentsDebuggingEnabled: false,
-    appendUserAgent: 'Inglês to Go App',
+    appendUserAgent: 'Ingles to Go App',
     buildOptions: {
       keystorePath: undefined,
       keystoreAlias: undefined,
