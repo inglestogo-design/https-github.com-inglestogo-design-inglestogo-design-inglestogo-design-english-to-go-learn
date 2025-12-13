@@ -1,4 +1,4 @@
-import { Mic, Volume2, RotateCw, CheckCircle2, XCircle, Lock, Trophy, Loader2 } from "lucide-react";
+import { Mic, Volume2, RotateCw, CheckCircle2, XCircle, Trophy, Loader2 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -211,15 +211,11 @@ export const Pronunciation = () => {
           </CardContent>
         </Card>
 
-        <Card className={`border-2 ${isLevelUnlocked('intermediate') ? 'border-secondary/20' : 'border-muted/20 opacity-60'}`}>
+        <Card className="border-2 border-secondary/20">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between mb-2">
               <h3 className="font-semibold"><strong>Intermediário</strong> / Intermediate</h3>
-              {isLevelUnlocked('intermediate') ? (
-                <Trophy className="h-5 w-5 text-secondary" />
-              ) : (
-                <Lock className="h-5 w-5 text-muted-foreground" />
-              )}
+              <Trophy className="h-5 w-5 text-secondary" />
             </div>
             <Progress value={(intermediateProgress.completed / intermediateProgress.total) * 100} className="mb-2" />
             <p className="text-sm text-muted-foreground">
@@ -228,15 +224,11 @@ export const Pronunciation = () => {
           </CardContent>
         </Card>
 
-        <Card className={`border-2 ${isLevelUnlocked('advanced') ? 'border-accent/20' : 'border-muted/20 opacity-60'}`}>
+        <Card className="border-2 border-accent/20">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between mb-2">
               <h3 className="font-semibold"><strong>Avançado</strong> / Advanced</h3>
-              {isLevelUnlocked('advanced') ? (
-                <Trophy className="h-5 w-5 text-accent" />
-              ) : (
-                <Lock className="h-5 w-5 text-muted-foreground" />
-              )}
+              <Trophy className="h-5 w-5 text-accent" />
             </div>
             <Progress value={(advancedProgress.completed / advancedProgress.total) * 100} className="mb-2" />
             <p className="text-sm text-muted-foreground">
