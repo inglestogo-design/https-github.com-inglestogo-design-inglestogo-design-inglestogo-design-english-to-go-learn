@@ -44,33 +44,7 @@ serve(async (req) => {
 
     logStep('User authenticated', { userId: user.id.substring(0, 8) + '...' });
 
-    // Server-side premium verification
-    const { data: profile, error: profileError } = await supabase
-      .from('profiles')
-      .select('is_premium, trial_ends_at')
-      .eq('id', user.id)
-      .single();
-
-    if (profileError) {
-      logStep('Profile fetch failed', { error: profileError.message });
-      return new Response(
-        JSON.stringify({ error: 'Failed to verify subscription status' }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
-
-    const hasAccess = profile?.is_premium || 
-      (profile?.trial_ends_at && new Date(profile.trial_ends_at) > new Date());
-
-    if (!hasAccess) {
-      logStep('Premium access denied', { userId: user.id.substring(0, 8) + '...' });
-      return new Response(
-        JSON.stringify({ error: 'Premium subscription required' }),
-        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
-
-    logStep('Premium access verified');
+    // Access granted to all authenticated users (premium check removed for Apple compliance)
 
     // Zod validation schema for input security
     const RequestSchema = z.object({
