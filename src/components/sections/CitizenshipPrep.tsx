@@ -7,16 +7,12 @@ import { citizenshipLessons } from "@/data/citizenshipLessonsData";
 import { MiniLesson } from "@/components/citizenship/MiniLesson";
 import { N400Glossary } from "@/components/citizenship/N400Glossary";
 import { InterviewSimulation } from "@/components/citizenship/InterviewSimulation";
-import { Lock, CheckCircle2, Flag, BookOpen, GraduationCap, MessageSquare, PlayCircle } from "lucide-react";
-import { useAuth } from "@/contexts/AuthContext";
+import { CheckCircle2, Flag, BookOpen, GraduationCap, MessageSquare, PlayCircle } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
 export const CitizenshipPrep = () => {
-  const { isPremium, isInTrialPeriod } = useAuth();
-  const hasFullAccess = isPremium || isInTrialPeriod;
   const [selectedLesson, setSelectedLesson] = useState<number | null>(null);
   const [completedLessons, setCompletedLessons] = useState<number[]>([]);
-  const [currentLevel, setCurrentLevel] = useState(1);
   const [showInterview, setShowInterview] = useState(false);
 
   const handleLessonComplete = () => {
@@ -148,12 +144,10 @@ export const CitizenshipPrep = () => {
               </Badge>
               <span className="font-semibold">Procedimentos</span>
               {allLevel2Complete && <CheckCircle2 className="w-5 h-5 text-green-500" />}
-              {!allLevel1Complete && <Lock className="w-4 h-4 text-muted-foreground" />}
             </div>
 
             {!allLevel1Complete ? (
               <Card className="p-6 text-center bg-muted/50">
-                <Lock className="w-10 h-10 mx-auto text-muted-foreground mb-3" />
                 <p className="text-sm text-muted-foreground">
                   Complete o Nível 1 para desbloquear
                 </p>
@@ -162,25 +156,18 @@ export const CitizenshipPrep = () => {
               <div className="grid gap-3">
                 {level2Lessons.map((lesson) => {
                   const isCompleted = completedLessons.includes(lesson.id);
-                  const isLocked = !hasFullAccess && lesson.id > 4;
                   
                   return (
                     <Card
                       key={lesson.id}
-                      className={`transition-all ${
-                        isLocked 
-                          ? 'opacity-60' 
-                          : 'cursor-pointer hover:shadow-md'
-                      } ${isCompleted ? 'bg-green-500/5 border-green-500/50' : ''}`}
-                      onClick={() => !isLocked && setSelectedLesson(lesson.id)}
+                      className={`transition-all cursor-pointer hover:shadow-md ${isCompleted ? 'bg-green-500/5 border-green-500/50' : ''}`}
+                      onClick={() => setSelectedLesson(lesson.id)}
                     >
                       <CardContent className="p-4">
                         <div className="flex items-start gap-3">
                           <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                             {isCompleted ? (
                               <CheckCircle2 className="w-5 h-5 text-green-500" />
-                            ) : isLocked ? (
-                              <Lock className="w-4 h-4 text-muted-foreground" />
                             ) : (
                               <span className="text-sm font-bold text-primary">{lesson.id}</span>
                             )}
@@ -193,11 +180,7 @@ export const CitizenshipPrep = () => {
                               {lesson.objective}
                             </p>
                           </div>
-                          {isLocked ? (
-                            <Badge variant="outline" className="text-xs flex-shrink-0">Premium</Badge>
-                          ) : (
-                            <PlayCircle className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                          )}
+                          <PlayCircle className="w-5 h-5 text-muted-foreground flex-shrink-0" />
                         </div>
                       </CardContent>
                     </Card>
@@ -212,7 +195,6 @@ export const CitizenshipPrep = () => {
             <div className="flex items-center gap-2 flex-wrap">
               <Badge variant="secondary" className="text-sm">Nível 3</Badge>
               <span className="font-semibold text-muted-foreground">Em Breve</span>
-              <Lock className="w-4 h-4 text-muted-foreground" />
             </div>
             <Card className="p-6 text-center bg-muted/30">
               <p className="text-sm text-muted-foreground">

@@ -1,4 +1,4 @@
-import { Volume2, Info, Lock } from "lucide-react";
+import { Volume2, Info } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
