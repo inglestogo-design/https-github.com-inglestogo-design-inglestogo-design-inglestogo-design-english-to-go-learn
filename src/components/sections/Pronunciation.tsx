@@ -239,15 +239,15 @@ export const Pronunciation = () => {
       </div>
 
       <Tabs value={selectedLevel} onValueChange={handleLevelChange} className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="basic">
-            <strong>Básico</strong> / Basic
+        <TabsList className="grid w-full grid-cols-3 h-auto p-1">
+          <TabsTrigger value="basic" className="text-xs sm:text-sm px-2 py-2 whitespace-nowrap">
+            Básico
           </TabsTrigger>
-          <TabsTrigger value="intermediate">
-            <strong>Intermediário</strong> / Intermediate
+          <TabsTrigger value="intermediate" className="text-xs sm:text-sm px-2 py-2 whitespace-nowrap">
+            Intermediário
           </TabsTrigger>
-          <TabsTrigger value="advanced">
-            <strong>Avançado</strong> / Advanced
+          <TabsTrigger value="advanced" className="text-xs sm:text-sm px-2 py-2 whitespace-nowrap">
+            Avançado
           </TabsTrigger>
         </TabsList>
 
@@ -262,9 +262,9 @@ export const Pronunciation = () => {
                   )}
                 </div>
                 <Badge variant="secondary">
-                  {selectedLevel === 'basic' && '<strong>Básico</strong> / Basic'}
-                  {selectedLevel === 'intermediate' && '<strong>Intermediário</strong> / Intermediate'}
-                  {selectedLevel === 'advanced' && '<strong>Avançado</strong> / Advanced'}
+                  {selectedLevel === 'basic' && 'Básico / Basic'}
+                  {selectedLevel === 'intermediate' && 'Intermediário / Intermediate'}
+                  {selectedLevel === 'advanced' && 'Avançado / Advanced'}
                 </Badge>
               </CardTitle>
             </CardHeader>
