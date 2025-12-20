@@ -87,30 +87,41 @@ const Auth = () => {
           navigate("/app");
         }
       } else {
-        const { data, error } = await signUp(email, password);
+        console.log('📝 Attempting signup with:', email);
+        const { data, error } = await signUp(email.trim(), password);
+        console.log('📝 Signup result:', { hasData: !!data, hasError: !!error, userId: data?.user?.id });
+        
         if (error) {
           // Handle specific signup errors with detailed messages
-          let errorMessage = "Erro ao criar conta. Tente novamente / Error creating account. Please try again.";
+          let errorMessage = "Erro ao criar conta. Tente novamente. / Error creating account. Please try again.";
           
-          if (error.message?.includes("already registered") || error.message?.includes("User already registered")) {
+          const errorText = error.message?.toLowerCase() || '';
+          
+          if (errorText.includes("already registered") || errorText.includes("user already registered")) {
             errorMessage = "Este email já está cadastrado. Tente fazer login. / This email is already registered. Try logging in.";
-          } else if (error.message?.includes("Password") || error.message?.includes("password")) {
+          } else if (errorText.includes("password")) {
             errorMessage = "Senha inválida. Use no mínimo 8 caracteres com maiúscula, minúscula e número. / Invalid password. Use at least 8 characters with uppercase, lowercase and number.";
-          } else if (error.message?.includes("Email") || error.message?.includes("email")) {
+          } else if (errorText.includes("email") && errorText.includes("invalid")) {
             errorMessage = "Email inválido. Verifique o formato. / Invalid email. Check the format.";
-          } else if (error.message?.includes("network") || error.message?.includes("Network")) {
+          } else if (errorText.includes("network") || errorText.includes("fetch")) {
             errorMessage = "Erro de conexão. Verifique sua internet. / Connection error. Check your internet.";
-          } else if (error.message?.includes("rate limit") || error.message?.includes("too many")) {
+          } else if (errorText.includes("rate limit") || errorText.includes("too many")) {
             errorMessage = "Muitas tentativas. Aguarde alguns minutos. / Too many attempts. Wait a few minutes.";
+          } else if (errorText.includes("signup") && errorText.includes("disabled")) {
+            errorMessage = "Cadastro temporariamente indisponível. / Signup temporarily unavailable.";
           }
           
-          console.error("Signup error:", error.message);
+          console.error("Signup error details:", error.message);
           toast.error(errorMessage);
         } else if (data?.user) {
+          console.log('✅ Account created successfully, user:', data.user.id);
           toast.success("Conta criada com sucesso! Bem-vindo! / Account created successfully! Welcome!");
+          // Small delay to ensure profile is created
+          await new Promise(resolve => setTimeout(resolve, 500));
           navigate("/app");
         } else {
           // Handle edge case where no error but also no user
+          console.error("Signup: No user returned and no error");
           toast.error("Erro inesperado ao criar conta. Tente novamente. / Unexpected error creating account. Please try again.");
         }
       }
