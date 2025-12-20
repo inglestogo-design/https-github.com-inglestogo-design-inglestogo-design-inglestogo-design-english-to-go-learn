@@ -17,9 +17,6 @@ const authSchema = z.object({
     .max(255),
   password: z.string()
     .min(8, { message: "A senha deve ter pelo menos 8 caracteres / Password must be at least 8 characters" })
-    .regex(/[A-Z]/, { message: "A senha deve conter uma letra maiúscula / Password must contain an uppercase letter" })
-    .regex(/[a-z]/, { message: "A senha deve conter uma letra minúscula / Password must contain a lowercase letter" })
-    .regex(/[0-9]/, { message: "A senha deve conter um número / Password must contain a number" })
 });
 
 const Auth = () => {
