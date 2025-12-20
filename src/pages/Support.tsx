@@ -263,9 +263,15 @@ const Support = () => {
               <p className="font-semibold text-foreground mb-2">English to Go</p>
               <p className="text-sm">Versão / Version: 1.0</p>
               <p className="text-sm mt-2">
+                Desenvolvido por / Developed by: English to Go Language School Inc.
+              </p>
+              <p className="text-sm">
                 © 2025 English to Go Language School Inc.
               </p>
               <p className="text-sm">Todos os direitos reservados / All rights reserved</p>
+              <p className="text-sm mt-4">
+                <strong>Contato / Contact:</strong> support@inglestogo.com
+              </p>
             </div>
           </CardContent>
         </Card>

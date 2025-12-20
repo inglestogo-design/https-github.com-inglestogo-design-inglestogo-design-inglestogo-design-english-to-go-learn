@@ -192,40 +192,73 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const signUp = async (email: string, password: string) => {
     const redirectUrl = `${window.location.origin}/`;
     
+    console.log('📝 Starting signup process for:', email);
+    
     try {
+      // Validate email format first
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        return { data: null, error: { message: "Invalid email format" } };
+      }
+      
+      // Validate password requirements
+      if (password.length < 8) {
+        return { data: null, error: { message: "Password must be at least 8 characters" } };
+      }
+      
       const { data, error } = await supabase.auth.signUp({
-        email,
+        email: email.trim().toLowerCase(),
         password,
         options: {
-          emailRedirectTo: redirectUrl
+          emailRedirectTo: redirectUrl,
+          data: {
+            email: email.trim().toLowerCase()
+          }
         }
       });
+      
+      console.log('📝 Signup response:', { userId: data?.user?.id, error: error?.message });
       
       if (error) {
         console.error("SignUp error:", error);
         return { data: null, error };
       }
       
-      // Create profile for new user
-      if (data?.user) {
-        const { error: profileError } = await supabase
-          .from("profiles")
-          .upsert({
-            id: data.user.id,
-            email: email,
-            onboarding_completed: false,
-            is_premium: false
-          }, { onConflict: 'id' });
-        
-        if (profileError) {
-          console.error("Profile creation error:", profileError);
+      // Check if user was actually created (not just returned existing)
+      if (!data?.user) {
+        console.error("SignUp: No user returned");
+        return { data: null, error: { message: "Unable to create account. Please try again." } };
+      }
+      
+      // For auto-confirmed signups, create profile immediately
+      if (data.user.email_confirmed_at || data.session) {
+        console.log('✅ User confirmed, creating profile');
+        try {
+          const { error: profileError } = await supabase
+            .from("profiles")
+            .upsert({
+              id: data.user.id,
+              email: email.trim().toLowerCase(),
+              onboarding_completed: false,
+              is_premium: false,
+              trial_ends_at: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString()
+            }, { onConflict: 'id' });
+          
+          if (profileError) {
+            console.error("Profile creation error:", profileError);
+            // Don't fail signup if profile creation fails - it will be created by trigger
+          } else {
+            console.log('✅ Profile created successfully');
+          }
+        } catch (profileErr) {
+          console.error("Profile creation catch error:", profileErr);
         }
       }
       
       return { data, error: null };
     } catch (err: any) {
       console.error("SignUp catch error:", err);
-      return { data: null, error: err };
+      return { data: null, error: { message: err?.message || "An unexpected error occurred. Please try again." } };
     }
   };
 
